@@ -377,9 +377,9 @@
   <!-- Navigation -->
   <nav class="main-nav">
     <ul>
-      <li><a href="#"><i class="fas fa-home"></i></a></li>
-      <li><a href="#">About HEI</a></li>
-      <li><a href="#">Administration</a></li>
+      <li><a href="index.php"><i class="fas fa-home"></i></a></li>
+      <li><a href="about.php">About HEI</a></li>
+      <li><a href="administration.php">Administration</a></li>
       <li><a href="#">Academics</a></li>
       <li><a href="#">Admission & Fee</a></li>
       <li><a href="#">Research</a></li>
