@@ -143,33 +143,85 @@
       color: #333;
       font-weight: 500;
     }
-   .about{
-    border:2px solid #125A33;
-    margin:30px;
-    padding:10px;
-    border-radius:10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-   }
-   .about:hover{
-      transform: scale(1.05);
-      cursor: pointer;
-   }
-   .faculty-card {
-     background-color: white;
-     border-radius: 10px;
-     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-     padding: 15px;
-     text-align: center;
-     margin-bottom: 20px;
-   }
-   .faculty-card img {
-     border-radius: 50%;
-     width: 100px;
-     height: 100px;
-     object-fit: cover;
-     margin-bottom: 10px;
-   }
+  .academic-section {
+    padding: 50px;
+    background-color: white;
+}
+.academic-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.academic-header h2 {
+    font-size: 32px;
+    color: #003366;
+}
+.navbar {
+    display: flex;
+    justify-content: center;
+    background: #125A33;
+    padding: 10px 0;
+}
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.navbar ul li {
+    position: relative;
+}
+.navbar ul li a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.navbar ul li:hover {
+    background: #125A33;
+}
+.navbar ul li ul {
+    display: none;
+    position: absolute;
+    background: black;
+    top: 40px;
+    left: 0;
+    min-width: 200px;
+    z-index: 1000;
+}
+.navbar ul li:hover ul {
+    display: block;
+}
+.navbar ul li ul li {
+    width: 100%;
+}
+.navbar ul li ul li a {
+    padding: 10px;
+    font-weight: normal;
+}
+.academic-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+.academic-box {
+    background: #f0f4f8;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+}
+.academic-box:hover {
+    background: #e1ecf7;
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+.academic-box i {
+    font-size: 40px;
+    color: #125A33;
+    margin-bottom: 15px;
+}
   </style>
 </head>
 <body>
@@ -219,17 +271,15 @@
   <!-- Navigation -->
   <nav class="main-nav">
     <ul>
-      <li><a href="index.php"><i class="fas fa-home"></i></a></li>
+    <li><a href="index.php"><i class="fas fa-home"></i></a></li>
       <li><a href="about.php">About HEI</a></li>
       <li><a href="administration.php">Administration</a></li>
-      <li><a href="#">Academics</a></li>
-      <li><a href="#">Admission & Fee</a></li>
-      <li><a href="#">Research</a></li>
-      <li><a href="#">Student Life</a></li>
-      <li><a href="#">Alumni</a></li>
-      <li><a href="#">Information Corner</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="academics.php">Academics</a></li>
+      <li><a href="admission_fee.php">Admission & Fee</a></li>
+      <li><a href="research.php">Research</a></li>
+      <li><a href="student_help_support.php">Student Help & Support</a></li>
+      <li><a href="gallery.php">Gallery</a></li>
+      <li><a href="contact_us.php">Contact Us</a></li>
       <li><a href="#" id="btn">Apply Now</a></li>
     </ul>
   </nav>
@@ -246,62 +296,79 @@
       </div>
     </div>
   </section>
-<section class="about">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-4" style="color:#125A33;">Program Details</h2>
-    <ul>
-      <li>B.Tech in Computer Science and Engineering</li>
-      <li>Diploma in Mechanical Engineering</li>
-      <li>B.Sc in Agriculture</li>
-      <li>BA in Economics</li>
-      <li>MBA in Finance</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Academic Calendar Section -->
-<section class="about">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-4" style="color:#125A33;">Academic Calendar</h2>
-    <ul>
-      <li>Semester 1 Begins: July 15, 2025</li>
-      <li>Mid-Semester Exams: September 20-25, 2025</li>
-      <li>Semester 1 Ends: December 5, 2025</li>
-      <li>Winter Break: December 10 - January 5</li>
-      <li>Semester 2 Begins: January 10, 2026</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Faculty Section -->
-<section class="about">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-4" style="color:#125A33;">Our Faculty</h2>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="faculty-card">
-          <img src="https://via.placeholder.com/100" alt="Dr. Sharma">
-          <h5>Dr. A. K. Sharma</h5>
-          <p>Professor, Computer Science</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="faculty-card">
-          <img src="https://via.placeholder.com/100" alt="Dr. Verma">
-          <h5>Dr. Ritu Verma</h5>
-          <p>Associate Professor, Management</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="faculty-card">
-          <img src="https://via.placeholder.com/100" alt="Dr. Patel">
-          <h5>Dr. H. Patel</h5>
-          <p>Assistant Professor, Agriculture</p>
-        </div>
-      </div>
+<div class="academic-section">
+    <div class="academic-header">
+        <h2>Academic Excellence</h2>
+        <p>Explore our academic departments, faculties, and diverse range of programs & courses.</p>
     </div>
-  </div>
-</section>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="#">Departments & Faculties <i class="fa fa-caret-down"></i></a>
+                <ul>
+                    <li><a href="#">Faculty of Science</a></li>
+                    <li><a href="#">Faculty of Engineering</a></li>
+                    <li><a href="#">Faculty of Arts</a></li>
+                    <li><a href="#">Faculty of Commerce</a></li>
+                    <li><a href="#">Faculty of Law</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Programs & Courses <i class="fa fa-caret-down"></i></a>
+                <ul>
+                    <li><a href="#">B.Tech (Computer Science, Civil, Mechanical)</a></li>
+                    <li><a href="#">MBA (Finance, Marketing, HR)</a></li>
+                    <li><a href="#">BCA & MCA</a></li>
+                    <li><a href="#">Diploma Courses</a></li>
+                    <li><a href="#">Ph.D. Programs</a></li>
+                </ul>
+            </li>
+             <li>
+                <a href="#">Examinations & Results <i class="fa fa-caret-down"></i></a>
+                <ul>
+                    <li><a href="#">Examinations Notices</a></li>
+                    <li><a href="#">Admit card download</a></li>
+                    <li><a href="#">Results & mark sheets </a></li>
+                </ul>
+            </li>
+             <li>
+                <a href="#">Rules & Regulations <i class="fa fa-caret-down"></i></a>
+                <ul>
+                    <li><a href="#">Attendance policy</a></li>
+                    <li><a href="#">Scholarships Criteria</a></li>
+                    <li><a href="#">University Damage Policy</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Academic Info Boxes -->
+    <div class="academic-content">
+        <div class="academic-box">
+            <i class="fa fa-book"></i>
+            <h3>Research & Innovation</h3>
+            <p>We focus on high-quality research that drives real-world impact.</p>
+        </div>
+        <div class="academic-box">
+            <i class="fa fa-chalkboard-teacher"></i>
+            <h3>Experienced Faculty</h3>
+            <p>Our professors bring decades of academic and industry expertise.</p>
+        </div>
+        <div class="academic-box">
+            <i class="fa fa-graduation-cap"></i>
+            <h3>Global Opportunities</h3>
+            <p>We offer international exchange programs and global exposure.</p>
+        </div>
+        <div class="academic-box">
+            <i class="fa fa-laptop-code"></i>
+            <h3>Modern Learning</h3>
+            <p>Advanced labs, e-learning platforms, and digital classrooms.</p>
+        </div>
+    </div>
+</div>
+
 
 <footer class="text-white pt-5 pb-3" style="background-color:#125A33;">
   <div class="container">
