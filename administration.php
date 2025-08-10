@@ -143,18 +143,68 @@
       color: #333;
       font-weight: 500;
     }
-   .about{
-    border:2px solid #125A33;
-    margin:30px;
-    padding:10px;
-    border-radius:10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-   }
-   .about:hover{
-      transform: scale(1.05);
-      cursor: pointer;
-   }
+   .administration-section {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+    font-family: Arial, sans-serif;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.admin-intro {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.admin-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.admin-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+}
+
+.admin-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.admin-card h3 {
+    font-size: 20px;
+    margin: 15px 0 5px;
+    color: #34495e;
+}
+
+.admin-card p {
+    font-size: 14px;
+    color: #777;
+}
+
 
   </style>
 </head>
@@ -205,17 +255,15 @@
   <!-- Navigation -->
   <nav class="main-nav">
     <ul>
-      <li><a href="index.php"><i class="fas fa-home"></i></a></li>
+     <li><a href="index.php"><i class="fas fa-home"></i></a></li>
       <li><a href="about.php">About HEI</a></li>
       <li><a href="administration.php">Administration</a></li>
-      <li><a href="#">Academics</a></li>
-      <li><a href="#">Admission & Fee</a></li>
-      <li><a href="#">Research</a></li>
-      <li><a href="#">Student Life</a></li>
-      <li><a href="#">Alumni</a></li>
-      <li><a href="#">Information Corner</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="academics.php">Academics</a></li>
+      <li><a href="admission_fee.php">Admission & Fee</a></li>
+      <li><a href="research.php">Research</a></li>
+      <li><a href="student_help_support.php">Student Help & Support</a></li>
+      <li><a href="gallery.php">Gallery</a></li>
+      <li><a href="contact_us.php">Contact Us</a></li>
       <li><a href="#" id="btn">Apply Now</a></li>
     </ul>
   </nav>
@@ -233,90 +281,50 @@
     </div>
   </section>
 <!-- University Leadership Section -->
-<section class="py-5" style="background-color: #fff;">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold" style="color:#125A33;">University Leadership</h2>
-      <p class="text-muted">Meet the leaders shaping the future of Ramchandra Chandravansi University.</p>
+<section class="administration-section">
+    <div class="container">
+        <h2 class="section-title">University Administration</h2>
+        <p class="admin-intro">
+            The administration of Bharti Gyanpeeth University is dedicated to fostering an environment of academic excellence, innovation, 
+            and holistic development. Our leadership team works tirelessly to ensure that every student receives the highest quality of 
+            education, support, and opportunities for growth.
+        </p>
+
+        <div class="admin-cards">
+            <!-- Chancellor -->
+            <div class="admin-card">
+                <img src="doc/chancellor.jpg" alt="Chancellor">
+                <h3>Prof. Rajesh Sharma</h3>
+                <p><strong>Chancellor</strong></p>
+                <p>Prof. Sharma leads the university with a vision to make it a hub of research, innovation, and global collaboration.</p>
+            </div>
+
+            <!-- Vice Chancellor -->
+            <div class="admin-card">
+                <img src="doc/vice.jpg" alt="Vice Chancellor">
+                <h3>Dr. Anjali Verma</h3>
+                <p><strong>Vice Chancellor</strong></p>
+                <p>Dr. Verma focuses on academic excellence, curriculum enhancement, and student empowerment.</p>
+            </div>
+
+            <!-- Registrar -->
+            <div class="admin-card">
+                <img src="doc/registar.png" alt="Registrar">
+                <h3>Mr. Amit Kumar</h3>
+                <p><strong>Registrar</strong></p>
+                <p>Mr. Kumar ensures smooth functioning of the university through effective governance and administration.</p>
+            </div>
+
+            <!-- Dean -->
+            <div class="admin-card">
+                <img src="doc/chairman.jpg" alt="Dean">
+                <h3>Prof. Vikram Singh</h3>
+                <p><strong>Dean of Academics</strong></p>
+                <p>Prof. Singh plays a vital role in fostering research, faculty development, and academic growth.</p>
+            </div>
+        </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-
-      <!-- Chancellor -->
-      <div class="col">
-        <div class="card h-100 border-0 shadow">
-          <img src="doc/chancellor.jpg" class="card-img-top" alt="Chancellor">
-          <div class="card-body text-center">
-            <h5 class="card-title text-success">Chancellor</h5>
-            <p class="card-text">Shri Ramchandra Chandravansi<br><small class="text-muted">Founder & Visionary</small></p>
-            <button class="btn btn-outline-success mt-2" onclick="viewDetails('chancellor')">View Details</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Vice Chancellor -->
-      <div class="col">
-        <div class="card h-100 border-0 shadow">
-          <img src="doc/vice.jpg" class="card-img-top" alt="Vice Chancellor">
-          <div class="card-body text-center">
-            <h5 class="card-title text-success">Vice Chancellor</h5>
-            <p class="card-text">Dr. [Full Name]<br><small class="text-muted">Academic Head</small></p>
-            <button class="btn btn-outline-success mt-2" onclick="viewDetails('vc')">View Details</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Registrar -->
-      <div class="col">
-        <div class="card h-100 border-0 shadow">
-          <img src="doc/registar.png" class="card-img-top" alt="Registrar">
-          <div class="card-body text-center">
-            <h5 class="card-title text-success">Registrar</h5>
-            <p class="card-text">Shri [Full Name]<br><small class="text-muted">Administrative Officer</small></p>
-            <button class="btn btn-outline-success mt-2" onclick="viewDetails('registrar')">View Details</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Finance Officer -->
-      <div class="col">
-        <div class="card h-100 border-0 shadow">
-          <img src="doc/finance_officer.jpg" class="card-img-top" alt="Finance Officer">
-          <div class="card-body text-center">
-            <h5 class="card-title text-success">Finance Officer</h5>
-            <p class="card-text">Shri [Full Name]<br><small class="text-muted">Financial Management</small></p>
-            <button class="btn btn-outline-success mt-2" onclick="viewDetails('finance')">View Details</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Controller of Examination -->
-      <div class="col">
-        <div class="card h-100 border-0 shadow">
-          <img src="doc/controller.jpg" class="card-img-top" alt="Controller of Examination">
-          <div class="card-body text-center">
-            <h5 class="card-title text-success">Controller of Examination</h5>
-            <p class="card-text">Shri [Full Name]<br><small class="text-muted">Assessment & Evaluation</small></p>
-            <button class="btn btn-outline-success mt-2" onclick="viewDetails('exam')">View Details</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Academic Leadership -->
-      <div class="col">
-        <div class="card h-100 border-0 shadow">
-          <img src="doc/dean.jpg" class="card-img-top" alt="Academic Leadership">
-          <div class="card-body text-center">
-            <h5 class="card-title text-success">Academic Leadership</h5>
-            <p class="card-text">Prof. [Full Name]<br><small class="text-muted">Dean of Academics</small></p>
-            <button class="btn btn-outline-success mt-2" onclick="viewDetails('academic')">View Details</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
 </section>
-
 
   
 <footer class="text-white pt-5 pb-3" style="background-color:#125A33;">
