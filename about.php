@@ -143,18 +143,59 @@
       color: #333;
       font-weight: 500;
     }
-   .about{
-    border:2px solid #125A33;
-    margin:30px;
-    padding:10px;
-    border-radius:10px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-   }
-   .about:hover{
-      transform: scale(1.05);
-      cursor: pointer;
-   }
+.sub-nav {
+    width: 400px;
+    border: 1px solid black;
+    margin: 10px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 0; /* remove extra padding from container */
+}
+
+.sub-nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+.sub-nav ul li {
+    list-style: none;
+    border-bottom: 1px solid black; /* border between items */
+    width: 100%;
+    padding: 8px 10px;
+    box-sizing: border-box;
+}
+
+/* Optional: remove border from last item */
+.sub-nav ul li:last-child {
+    border-bottom: none;
+}
+ a{
+  text-decoration:none;
+  color:black;
+  font-size:small;
+}
+.header {
+    background-color: #125A33;
+    color: white;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+    font-weight: bolder;
+}
+.about-section{
+  margin:5px;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border:1px solid black;
+  cursor: pointer;
+}
+#banner-logo{
+  width: 100%;
+  height:100%;
+}
 
   </style>
 </head>
@@ -205,17 +246,15 @@
   <!-- Navigation -->
   <nav class="main-nav">
     <ul>
-      <li><a href="index.php"><i class="fas fa-home"></i></a></li>
+     <li><a href="index.php"><i class="fas fa-home"></i></a></li>
       <li><a href="about.php">About HEI</a></li>
       <li><a href="administration.php">Administration</a></li>
-      <li><a href="#">Academics</a></li>
-      <li><a href="#">Admission & Fee</a></li>
-      <li><a href="#">Research</a></li>
-      <li><a href="#">Student Life</a></li>
-      <li><a href="#">Alumni</a></li>
-      <li><a href="#">Information Corner</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="academics.php">Academics</a></li>
+      <li><a href="admission_fee.php">Admission & Fee</a></li>
+      <li><a href="research.php">Research</a></li>
+      <li><a href="student_help_support.php">Student Help & Support</a></li>
+      <li><a href="gallery.php">Gallery</a></li>
+      <li><a href="contact_us.php">Contact Us</a></li>
       <li><a href="#" id="btn">Apply Now</a></li>
     </ul>
   </nav>
@@ -232,69 +271,87 @@
       </div>
     </div>
   </section>
-<!-- About RCU Section -->
-<section class="about" class="py-5" style="background-color:#f9f9f9;">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h2 class="fw-bold" style="color:#125A33;">About Ramchandra Chandravansi University</h2>
-      <p class="text-muted">Empowering the youth of Jharkhand and beyond through quality education.</p>
+<section class="about_section">
+<div class="container">
+      <div class="row">
+    <div class="col-lg-4 col-sm-12">
+          <div class="sub-nav">
+             <div class="header">
+              Quick Link
+              </div>
+            <ul>
+              <li><a href="">Home</a></li>
+              <li><a href="">Careers</a></li>
+              <li><a href="">Placement</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
+          </div>
+          <div class="banner-logo">
+            <img src="doc/logo.png" alt="RCU Logo" id="banner-logo">
+          </div>
     </div>
-    <div class="row g-4">
-      <div class="col-md-12">
-        <p style="text-align:justify;">
-          Ramchandra Chandravansi University (RCU) has been setup by <strong>Ramchandra Chandravansi Welfare Trust (RCWT)</strong>, which was registered in the year 2006. Since its inception, the mission of the founding fathers has been to spread education to ordinary citizens of India, particularly those hailing from backward regions of the state of Jharkhand and India.
-        </p>
-        <p style="text-align:justify;">
-          With a very humble beginning of two Intermediate Colleges 15 years back, RCWT has transformed itself into a diverse and excellent educational complex offering technical, professional, and medical academic programs.
-        </p>
-        <p style="text-align:justify;">
-          The backward regions of Garhwa and Palamu pose significant challenges in accessing higher education. RCWT has developed a culture of encouraging education from the school level, ensuring that boys and girls from these regions aspire and progress toward higher learning.
+    <div class="col-lg-8 col-sm-12">
+        <div class="about-section">
+    <div class="header">
+        About Us
+    </div>
+    <div class="content" style="padding: 20px; text-align: justify;">
+        <p>
+            <strong>Bharti Gyanpeeth University</strong> is a distinguished center of higher education, research, and innovation, 
+            established with the vision of creating a transformative learning environment for students from across the nation and beyond. 
+            Founded with the belief that education is the foundation for personal growth and societal progress, the university has consistently 
+            upheld its commitment to academic excellence, ethical values, and community engagement.
         </p>
 
-        <blockquote class="blockquote text-success border-start border-4 ps-3 my-4" style="border-color:#927037;">
-          <p class="mb-0">"Every region and strata of our society imposes special demands on avenues of higher education... courses must cater to local needs and promote regional development."</p>
-          <footer class="blockquote-footer mt-2">Shri Ramchandra Chandravansi <cite title="Chairman, RCU">(Chairman, RCU)</cite></footer>
+        <p>
+            The university offers a diverse range of <strong>undergraduate, postgraduate, diploma, and doctoral programs</strong> 
+            in fields such as science, engineering, management, law, humanities, commerce, pharmacy, and health sciences. 
+            Each program is designed to blend theoretical knowledge with practical exposure, ensuring that graduates are 
+            industry-ready, globally competent, and socially responsible.
+        </p>
+
+        <p>
+            <strong>Our Mission:</strong> To empower students with a holistic education that nurtures intellectual growth, 
+            fosters creativity, and instills leadership qualities, preparing them to meet the challenges of a rapidly evolving world.
+        </p>
+
+        <p>
+            <strong>Our Vision:</strong> To be recognized as a world-class university that drives innovation, research, and 
+            societal development, contributing meaningfully to the nation's progress.
+        </p>
+
+        <p>
+            The <strong>state-of-the-art campus</strong> is equipped with advanced laboratories, modern classrooms, 
+            an extensive digital library, innovation hubs, sports complexes, and residential facilities, 
+            creating an ecosystem that supports academic excellence and personal well-being.
+        </p>
+
+        <blockquote style="border-left: 4px solid #125A33; padding-left: 10px; color: #125A33; font-style: italic;">
+            "At Bharti Gyanpeeth University, we believe education is not confined to the classroom — 
+            it is a lifelong journey of learning, innovation, and service to humanity."
         </blockquote>
 
-        <p style="text-align:justify;">
-          The Palamu and Garhwa districts, along with parts of Chhattisgarh, UP, and Bihar, are economically dependent on agriculture and mining. Hence, education tailored to these sectors is essential. RCWT focuses on social relevance and inter-disciplinary learning to empower these regions.
-        </p>
-        <p style="text-align:justify;">
-          RCWT is committed to becoming a pioneer in quality education and currently operates a wide network of institutions:
+        <p>
+            The strength of Bharti Gyanpeeth University lies in its <strong>experienced faculty, cutting-edge research, 
+            industry collaborations, and global partnerships</strong> that open doors to endless opportunities for our students. 
+            Our alumni network is a testament to the university's impact, with graduates excelling in diverse industries and making 
+            meaningful contributions to society.
         </p>
 
-        <div class="row">
-          <div class="col-md-6">
-            <ul>
-              <li>Sohari Chandravansi Nursing School (SCNS)</li>
-              <li>Laxmi Chandravansi Medical College and Hospital (LCMCH)</li>
-              <li>Ramchandra Chandravansi College of Physical Education (RCCPE)</li>
-              <li>Ramchandra Chandravansi Institute of Technology (RCIT)</li>
-              <li>Sahadev Chandravansi B.Ed. College (SCBC)</li>
-              <li>Shiveshar Chandravansi Degree College (SCDC)</li>
-              <li>Tetri Chandravansi College of Education (TCCE)</li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <ul>
-              <li>Tetri Chandravansi Pharmacy College (TCPC)</li>
-              <li>Ramchandra Chandravansi University (RCU)</li>
-              <li>Laxmi Chandravansi Homoeopathic Medical College & Research Centre (LCHMC&RC)</li>
-              <li>Bhola Chandravansi College of Science (BCCS)</li>
-              <li>Ramchandra Chandravansi Polytechnic Institute (RCPI)</li>
-              <li>Lakshmi Chandravansi Degree Mahila College (LCDM)</li>
-            </ul>
-          </div>
-        </div>
-
-        <p class="mt-4" style="text-align:justify;">
-          Through these institutions, RCWT continues to provide access to quality education and aims to uplift the socio-economic fabric of the region through skill-based and industry-aligned learning.
+        <p>
+            With a strong emphasis on <em>skill development, innovation, and entrepreneurship</em>, 
+            Bharti Gyanpeeth University continues to inspire generations of learners, shaping leaders who will 
+            guide communities and industries toward a brighter, more sustainable future.
         </p>
-      </div>
+    </div>
+</div>
+
+</div>
+
     </div>
   </div>
+</div>
 </section>
-
   
 <footer class="text-white pt-5 pb-3" style="background-color:#125A33;">
   <div class="container">
