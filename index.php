@@ -43,7 +43,7 @@
       border-bottom: 1px solid #ccc;
     }
     #logo {
-     height: 80px; 
+     height: 100px; 
      }
     .enquery {
       display: flex;
@@ -150,181 +150,259 @@
       color: #333;
       font-weight: 500;
     }
-
-    .introduction, .program, .why_rcu { 
-    padding: 40px 5%; 
+    .disc{
+      font-size:medium;
+      padding:5px;
     }
-    .introduction img, #banner {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    .content{
+      padding:10px;
     }
-
-    .program { 
-    background-color: #125A33; 
-    color: white; 
+    #read_more{
+      background-color:#927037;
+      padding:10px;
+      color:white;
+      border-radius:10px;
+      text-decoration:none;
+      margin:5px;
     }
-    .program h1, .program h4 { 
-    color: #fff; 
+    .intro-card{
+      text-algin:center;
     }
-    .course ul { 
-    list-style: disc inside; 
-    padding-left: 20px; 
-    }
-    .course li { 
-    font-size: 15px; 
-    }
-    #color {
-     font-weight: bolder; 
-     }
-    #sub-h_1 { 
-    color: yellow;
-    font-weight: bold; 
-     }
-    .btn1 {
-      background-color: #876636;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      display: inline-block;
-      margin-top: 15px;
-    }
-
-    .card {
-      margin: 10px 0;
-      padding: 10px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease;
-      border-radius: 10px;
-      background-color: white;
-    }
-    .card:hover {
-     transform: scale(1.05); 
-     cursor: pointer; 
-     }
-    .card-img { 
-    width: 100%; 
-    height: 200px; 
-    object-fit: cover; 
-    border-radius: 10px; 
-    }
-    #leader {
-     color: #125A33;
-     font-size: larger; 
-     font-weight: bolder; 
-     margin-top: 10px; 
-     }
-    .font { 
-    font-size: 40px;
-    color: #125A33; 
-    margin-bottom: 10px; 
-    }
-    #disc { 
-    font-size: 18px; 
-    }
-    .circle{
-      display:flex;
+    .intro-pic{
+       display:flex;
       justify-content:center;
     }
-    .profile{
-      text-algin:center;
-      background-color: #125A33;
-      padding:5px;
-      border-radius:10px;
-      box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.15);
-      margin:5px;
-      transition: transform 0.3s ease;
-    }
-    .profile:hover{
-       transform: scale(1.05); 
-    }
-    #profile_pic{
+    #pic{
       width: 150px;
-      height: 150px;
-      border-radius:100%;
-      box-shadow: 0 5px 5px  white;
-      cursor: pointer;
+      height:200px;
+      border:5px solid #927037;
     }
-    .info{
-      text-align:center;
-      margin:5px;
-    }
-    .student_review{
-     text-align:center;
-    }
-    #sup{
-      color:grey;
+    #post{
       font-weight:bolder;
-    }
-    #name{
-      color:yellow;
       font-size:larger;
-      font-weight:bolder;
+      color:#125A33;
+      text-align:center;
     }
-    #dept{
-      color:grey;
-      font-size:medium;
-    }
-    #blue{
-      color:white;
-    }
-    .gallery-section {
-      background-color: #f9f9f9;
-      padding: 50px 5%;
-    }
-    .gallery-section h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-weight: bold;
-      color: #125A33;
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .gallery-item {
-      flex: 1 1 calc(25% - 20px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: white;
-      transition: transform 0.3s ease;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      transition: 0.3s;
-    }
-    .gallery-item:hover {
-      transform: scale(1.05);
-    }
-    .gallery-caption {
-      padding: 10px;
-      text-align: center;
-      font-weight: 500;
-    }
-    @media (max-width: 992px) {
-      .gallery-item {
-        flex: 1 1 calc(50% - 20px);
-      }
-    }
-    @media (max-width: 576px) {
-      .gallery-item {
-        flex: 1 1 100%;
-      }
-    }
-    @media (max-width: 768px) {
-      .enquery { 
-      justify-content: center; 
-      text-align: center; 
-      }
-    }
+    .sub-part .card {
+  transition: transform 0.3s ease;
+   box-shadow: 0px 14px 14px rgba(0, 0, 0, 0.3);
+}
+.sub-part .card:hover {
+  transform: translateY(-5px);
+}
+.sub-part .card-header {
+  font-size: 1rem;
+  padding: 10px;
+}
+.sub-part .card-body p {
+  margin-bottom: 10px;
+}
+.total-quantity{
+  background-color:#125A33;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+}
+#count {
+  font-size: larger;
+  font-weight: bolder;
+  position: relative;
+  display: inline-block;
+  color: white;
+}
+
+#count::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 3px;
+  width: 0%;
+  background-color: yellow;
+  animation: loadingBorder 2s infinite;
+}
+.acutal-quantity{
+  color:white;
+  padding:5px;
+}
+.sub-part{
+  background-color:white;
+}
+@keyframes loadingBorder {
+  0% {
+    width: 0%;
+    background-color: yellow;
+  }
+  50% {
+    width: 100%;
+    background-color: orange;
+  }
+  100% {
+    width: 0%;
+    background-color: red;
+  }
+}
+.img-card {
+  position: relative;
+  height: 300px;
+  border-radius: 15px;
+  color: white;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  margin:5px;
+}
+
+.img-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Background images */
+.card-1 {
+  background-image: url('doc/sbuimg.png');
+}
+
+.card-2 {
+  background-image: url('doc/sbuimg1.webp');
+}
+
+.card-3 {
+  background-image: url('doc/sbuimg2.webp');
+}
+
+.font-ausome i {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: bold;
+}
+.view_apply{
+  padding:5px;
+}
+.university_opp{
+  background-color:white;
+}
+.university-img {
+  background-image: url('doc/banner_4.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  min-height: 350px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.event-card {
+  background-color: #125A33;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.recruiter-marquee {
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  padding: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+  gap: 60px;
+}
+
+.marquee-content img {
+  height: 60px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.marquee-content img:hover {
+  filter: grayscale(0%);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.apply_admission input,
+.apply_admission textarea {
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.apply_admission input:focus,
+.apply_admission textarea:focus {
+  border-color: #125A33;
+  box-shadow: 0 0 5px rgba(18, 90, 51, 0.5);
+  outline: none;
+  cursor: pointer;
+}
+.social-icon {
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 50%;
+    color: #fff;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+  }
+
+  .social-icon.facebook {
+    background-color: #3b5998;
+  }
+
+  .social-icon.twitter {
+    background-color: #1da1f2;
+  }
+
+  .social-icon.instagram {
+    background-color: #e1306c;
+  }
+
+  .social-icon.linkedin {
+    background-color: #0077b5;
+  }
+
+  .social-icon.youtube {
+    background-color: #ff0000;
+  }
+
+  .social-icon:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+
   </style>
 </head>
 <body>
@@ -380,14 +458,12 @@
       <li><a href="index.php"><i class="fas fa-home"></i></a></li>
       <li><a href="about.php">About HEI</a></li>
       <li><a href="administration.php">Administration</a></li>
-      <li><a href="#">Academics</a></li>
-      <li><a href="#">Admission & Fee</a></li>
-      <li><a href="#">Research</a></li>
-      <li><a href="#">Student Life</a></li>
-      <li><a href="#">Alumni</a></li>
-      <li><a href="#">Information Corner</a></li>
-      <li><a href="#">Gallery</a></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="academics.php">Academics</a></li>
+      <li><a href="admission_fee.php">Admission & Fee</a></li>
+      <li><a href="research.php">Research</a></li>
+      <li><a href="student_help_support.php">Student Help & Support</a></li>
+      <li><a href="gallery.php">Gallery</a></li>
+      <li><a href="contact_us.php">Contact Us</a></li>
       <li><a href="#" id="btn">Apply Now</a></li>
     </ul>
   </nav>
@@ -404,178 +480,340 @@
       </div>
     </div>
   </section>
+ <section class="introduction">
+           <div class="container">
+                  <div class="row">
+                         <div class="col-lg-6 col-sm-12">
+                              <div class="content">
+                                <h2> Welcome To <b>BHARTI GYANPEETH</b></h2>
+                                <p class="disc">Bharti Gyanpeeth University is a premier institution committed to academic excellence, innovation, and holistic development.
+                                   Founded with the vision to empower the youth with knowledge, skills, and values, our university offers a diverse range of programs across 
+                                   disciplines such as Science, Technology, Management, Humanities, and Vocational Studies
+                                </p>
+                                <p class="disc">
+                                   At Bharti Gyanpeeth, we believe in nurturing future leaders, thinkers, and changemakers through world-class education, 
+                                   experienced faculty, industry exposure, and a vibrant campus life. Our emphasis on research, entrepreneurship, and community engagement ensures that students graduate not only with degrees, 
+                                   but with purpose and confidence to shape the future.
+                                </p>
+                                <a href="" id="read_more">READ MORE</a>
+                              </div>
+                         </div>
+                         <div class="col-lg-6 col-sm-12">
+                                <div class="leader_ship">
+                                      <h2>Ower Campus Leader</h2>
+                                       <div class="leader_into">
+                                        <div class="row">
+                                          <div class="col-lg-3 col-sm-12">
+                                                <div class="intro-card">
+                                                  <div class="intro-pic">
+                                                  <img src="doc/chairman.jpg" alt="" id="pic">
+                                                  </div>
+                                                  <p id="post">Chairman </p>
+                                                </div>
+                                          </div>
+                                          <div class="col-lg-3 col-sm-12">
+                                                 <div class="intro-card">
+                                                   <div class="intro-pic">
+                                                  <img src="doc/chancellor.jpg" alt="" id="pic">
+                                                  </div>
+                                                  <p id="post">Chancellor</p>
+                                                </div>
+                                          </div>
+                                          <div class="col-lg-3 col-sm-12">
+                                                  <div class="intro-card">
+                                                     <div class="intro-pic">
+                                                  <img src="doc/deputy-direcrtor.jpg" alt="" id="pic">
+                                                </div>
+                                                <p id="post">Dy.Director</p>
+                                                </div>
+                                          </div>
+                                          <div class="col-lg-3 col-sm-12">
+                                                 <div class="intro-pic">
+                                                  <img src="doc/vice.jpg" alt="" id="pic">
+                                                   </div>
+                                                   <p id="post">Vice Chancellor</p>
+                                                </div>
+                                          </div>
+                                        </div>
+                                       </div>
+                                </div>
+                         </div>
+                  </div>
+           </div>
+ </section>
+<section class="sub-part">
+  <div class="container py-5">
+    <h3 class="text-center mb-4" style="color: #125A33;">Latest Highlights</h3>
+    <div class="row g-4">
+      <div class="col-lg-4 col-sm-12">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header  bg-success text-white fw-bold text-center">🎓 Admissions</div>
+          <div class="card-body">
+            <marquee direction="up" scrollamount="2" height="150px">
+              <p>Admissions open for 2025-26 batch!</p>
+              <p>Apply now to secure your seat.</p>
+              <p>Scholarships available for meritorious students.</p>
+            </marquee>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header  bg-success text-white text-dark fw-bold text-center">📅 Events</div>
+          <div class="card-body">
+            <marquee direction="up" scrollamount="2" height="150px">
+              <p>Orientation starts on 1st September.</p>
+              <p>AI & Robotics Seminar next month.</p>
+              <p>Don’t miss the Annual Fest - GYANOTSAV!</p>
+            </marquee>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <div class="card shadow-sm h-100 border-0">
+          <div class="card-header  bg-success text-white fw-bold text-center">🏆 Opportunities</div>
+          <div class="card-body">
+            <marquee direction="up" scrollamount="2" height="150px">
+              <p>Campus placement drive from 10th October.</p>
+              <p>Internships with top companies.</p>
+              <p>Skill workshops every weekend.</p>
+            </marquee>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="total-quantity">
+           <div class="acutal-quantity">
+            <p id="count">15</p>
+            <p id="type">YEARS OF LEGACY</p>
+           </div>
+           <div class="acutal-quantity">
+            <p id="count">20</p>
+            <p id="type">HIERING PATNER</p>
+           </div>
+            <div class="acutal-quantity">
+            <p id="count">25</p>
+            <p id="type">DEPARTMENT</p>
+           </div>
+            <div class="acutal-quantity">
+            <p id="count">200</p>
+            <p id="type">FACULTY MEMBERS</p>
+           </div>
+            <div class="acutal-quantity">
+            <p id="count">2500</p>
+            <p id="type">STUDENTS</p>
+           </div>
+</section>
+<section class="view_apply">
+  <div class="container">
+    <div class="row">
 
-  <!-- Introduction -->
-  <section class="introduction">
+      <div class="col-lg-4 col-sm-12">
+        <div class="img-card card-1">
+          <div class="font-ausome"><i class="fas fa-check"></i></div>
+          <div class="text">APPLY ONLINE</div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-12">
+        <div class="img-card card-2">
+          <div class="font-ausome"><i class="fas fa-plus"></i></div>
+          <div class="text">FIND PROGRAMS</div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-sm-12">
+        <div class="img-card card-3">
+          <div class="font-ausome"><i class="fas fa-clock"></i></div>
+          <div class="text">SCHOLARSHIPS</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="university_opp py-5">
+  <div class="container">
+    <h3 class="text-center mb-5" style="color: #125A33;">UNIVERSITY SPECIAL EVENTS</h3>
     <div class="row align-items-center">
-      <div class="col-lg-6 col-md-12 mb-4">
-        <img src="doc/rcu_girl.png" alt="RCU Student">
+      
+      <!-- Left Side Image -->
+      <div class="col-lg-6 col-sm-12 mb-4 mb-lg-0">
+        <div class="university-img w-100 h-100"></div>
       </div>
-      <div class="col-lg-6 col-md-12">
-        <span id="sub-h_1">Our Introduction</span>
-        <h1>Welcome To RCU</h1>
-        <h3>Ramchandra Chandravansi University</h3>
-        <p>RCU has been setup by Ramchandra Chandravansi Welfare Trust (RCWT) which was registered in the year 2006. The mission is to spread education to citizens of India, especially in backward regions of Jharkhand.</p>
-        <a href="#" class="btn1">Read More</a>
-      </div>
-    </div>
-  </section>
 
-  <!-- Programs -->
-  <section class="program">
-    <div class="row">
+      <!-- Right Side Events -->
       <div class="col-lg-6 col-sm-12">
-        <span id="sub-h_1">Courses We Offer</span>
-        <h1 id="color">Programs</h1>
-        <div class="course">
-          <h4><i class="fas fa-check-circle"></i> Faculty of Arts & Humanities</h4>
-          <ul>
-            <li>B.A. / M.A. – Economics, English, Geography, Hindi, History, Home Science, Political Science, Psychology, Sociology, Urdu, Sanskrit.</li>
-          </ul>
-        </div>
-        <div class="course">
-          <h4><i class="fas fa-check-circle"></i> Faculty of Science</h4>
-          <ul>
-            <li>B.Sc. / M.Sc. – Botany, Chemistry, Math, Physics, Zoology, Geology.</li>
-            <li>BCA, MCA, B.Lib, M.Lib, D.Lib</li>
-          </ul>
-        </div>
-        <div class="course">
-          <h4><i class="fas fa-check-circle"></i> Faculty of Education</h4>
-          <ul>
-            <li>B.Ed, B.P.Ed, M.Ed, Yoga</li>
-          </ul>
-        </div>
-        <div class="course">
-          <h4><i class="fas fa-check-circle"></i> Faculty of Engineering</h4>
-          <ul>
-            <li>Diploma – EEE, ME, CE</li>
-            <li>B.Tech / M.Tech – CSE, EE, ECE, ME, CE</li>
-          </ul>
-        </div>
-        <div class="course">
-          <h4><i class="fas fa-check-circle"></i> Faculty of Medicine</h4>
-          <ul>
-            <li>UG – MBBS, BHMS, B.Sc Nursing, Post B.Sc Nursing, B.Sc MLT, B.Pharma, D.Pharma</li>
-            <li>PG – M.Sc Nursing, MARD</li>
-            <li>Diploma – DMLT, OT Technician, X-Ray Technician</li>
-          </ul>
-        </div>
-        <div class="course">
-          <h4><i class="fas fa-check-circle"></i> Certification Courses</h4>
-          <ul>
-            <li>Dresser</li>
-          </ul>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="event-card text-center">
+              <i class="fas fa-music fa-2x mb-2"></i>
+              <h5>Annual Cultural Fest</h5>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="event-card text-center">
+              <i class="fas fa-futbol fa-2x mb-2"></i>
+              <h5>Sports Meet</h5>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="event-card text-center">
+              <i class="fas fa-laptop-code fa-2x mb-2"></i>
+              <h5>Tech Fest / Hackathon</h5>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="event-card text-center">
+              <i class="fas fa-user-graduate fa-2x mb-2"></i>
+              <h5>Convocation Ceremony</h5>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-lg-6 col-sm-12">
-        <img src="doc/library.jpg" id="banner">
-      </div>
-    </div>
-  </section>
-  <section class="leader">
-  <div class="container">
-    <h1 style="text-align:center;font-weight:bolder;">Campus Leadership</h1>
-    <div class="row">
-      <div class="col-sm-12 col-lg-3">
-           <div class="card">
-                <img src="doc/chairman.jpg" alt="" class="card-img">
-                <span id="leader">Chairman</span>
-           </div>
-      </div>
-      <div class="col-sm-12 col-lg-3">
-              <div class="card">
-                <img src="doc/chancellor.jpg" alt="" class="card-img">
-                <span id="leader">Chancellor</span>
-           </div>      
-      </div>
-      <div class="col-sm-12 col-lg-3">
-             <div class="card">
-                <img src="doc/deputy-direcrtor.jpg" alt="" class="card-img">
-                <span id="leader">Dy. Director</span>
-           </div>
-      </div>
-      <div class="col-sm-12 col-lg-3">
-             <div class="card">
-                <img src="doc/vice.jpg" alt="" class="card-img">
-                <span id="leader">Vice Chancellor</span>
-           </div>    
-      </div>
+
     </div>
   </div>
 </section>
-<section class="why_rcu">
+<section class="recuriters py-5" style="background-color: #f4f4f4;">
   <div class="container">
-     <h1 style="text-align:center;font-weight:bolder;">Why RCU?</h1>
-    <div class="row">
-      <div class="col-sm-12 col-lg-3">
-            <div class="card">
-              <div class="font"><i class="fas fa-users"></i></div>
-              <p id="disc">RCU Legacy Pionners in Technical Education</p>
-            </div>
+    <h3 class="text-center mb-4" style="color: #125A33;">OUR RECRUITERS</h3>
+
+    <div class="recruiter-marquee">
+      <div class="marquee-content">
+        <img src="doc/alka.png" alt="TCS">
+        <img src="doc/buyzu.png" alt="Wipro">
+        <img src="doc/radiant.png" alt="Infosys">
+        <img src="doc/talbroc.png" alt="IBM">
+        <img src="doc/tata_steel.png" alt="Accenture">
+        <!-- Add more logos as needed -->
       </div>
-      <div class="col-sm-12 col-lg-3">
-            <div class="card">
-              <div class="font"><i class="fas fa-users"></i></div>
-              <p id="disc">Highly qualified and experienced Faculty</p>
-            </div>
+    </div>
+
+  </div>
+</section>
+<section class="approval py-5" style="background-color: white;">
+  <div class="container">
+    <h3 class="text-center mb-5" style="color: #125A33;">Approvals & Affiliated Universities</h3>
+    <div class="row text-center">
+
+      <!-- Box 1 -->
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="approval-box p-4 shadow-sm bg-white rounded">
+          <i class="fas fa-university fa-2x mb-3" style="color: #125A33;"></i>
+          <h5>UGC Approved</h5>
+          <p>Recognized by the University Grants Commission (UGC).</p>
+        </div>
       </div>
-      <div class="col-sm-12 col-lg-3">
-             <div class="card">
-              <div class="font"><i class="fas fa-users"></i></div>
-              <p id="disc">Tie-ups with Leading Industries</p>
-            </div>
+
+      <!-- Box 2 -->
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="approval-box p-4 shadow-sm bg-white rounded">
+          <i class="fas fa-certificate fa-2x mb-3" style="color: #125A33;"></i>
+          <h5>AICTE Approved</h5>
+          <p>Approved by All India Council for Technical Education.</p>
+        </div>
       </div>
-      <div class="col-sm-12 col-lg-3">
-            <div class="card">
-              <div class="font"><i class="fas fa-users"></i></div>
-              <p id="disc">Academic MOUs with Leading Instituations.</p>
-            </div>
+
+      <!-- Box 3 -->
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="approval-box p-4 shadow-sm bg-white rounded">
+          <i class="fas fa-star fa-2x mb-3" style="color: #125A33;"></i>
+          <h5>NAAC Accredited</h5>
+          <p>Accredited for quality education by NAAC.</p>
+        </div>
       </div>
+
+      <!-- Box 4 -->
+      <div class="col-md-3 col-sm-6 mb-4">
+        <div class="approval-box p-4 shadow-sm bg-white rounded">
+          <i class="fas fa-school fa-2x mb-3" style="color: #125A33;"></i>
+          <h5>Affiliated Universities</h5>
+          <p>Connected with top Indian universities for various programs.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-<section class="student_review">
-     <div class="container">
-            <span id="sub-1">Student Feedback</span>
-            <h1 id="sup">Students</h1>
-            <div class="profile">
-                <marquee scrollamount="5">
-                 <div class="circle">
-                     <img src="doc/profile_pic.jpeg" id="profile_pic" alt="">
-                 </div>
-                 <div class="info">
-                    <p id="blue">Ramchandra Chandravansi University offers a well-rounded educational experience with a focus on academic excellence and skill development. </p>
-                    <p id="name">(Harsh Ranjan)</p>
-                    <p id="dept">B.Tech(CSE) 2015-2019</p>
-                </div>
-              </marquee>
+
+<section class="apply_admission py-5" style="background-color: #f8f9fa;">
+  <div class="container">
+    <h3 class="text-center mb-5" style="color: #125A33;">Apply for Admission / Enquiry</h3>
+    <div class="row align-items-center">
+      
+      <!-- Left Image Banner -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="doc/top_company.webp" alt="Admission Banner" class="img-fluid rounded shadow">
+      </div>
+
+      <!-- Right Form -->
+      <div class="col-md-6">
+        <div class="p-4 rounded shadow-sm" style="background-color: #125A33; color:white;">
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
             </div>
-     </div>
-</section>
-<section class="latest_event">
-            <h1 style="text-align:center;font-weight:bolder;">Latest News & Events</h1>
-            <div class="gallery-section">
-      <h2>RCU Gallery</h2>
-      <div class="gallery">
-        <div class="gallery-item">
-          <img src="doc/event1.jpg" alt="Event 1">
-          <div class="gallery-caption">Tech Fest 2025</div>
-        </div>
-        <div class="gallery-item">
-          <img src="doc/event4.jpg" alt="Event 2">
-          <div class="gallery-caption">Annual Sports Day</div>
-        </div>
-        <div class="gallery-item">
-          <img src="doc/event3.jpg" alt="Event 3">
-          <div class="gallery-caption">Cultural Night</div>
-        </div>
-        <div class="gallery-item">
-          <img src="doc/event2.jpg" alt="Event 4">
-          <div class="gallery-caption">AI & Robotics Seminar</div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" placeholder="Enter your phone" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Your Query</label>
+              <textarea class="form-control" id="message" rows="4" placeholder="Write your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn" style="background-color:#927037; color: white;">Submit</button>
+          </form>
         </div>
       </div>
+
+    </div>
+  </div>
 </section>
+<section class="social-media py-5" style="background-color: white;">
+  <div class="container text-center">
+    <h3 class="mb-4" style="color: #125A33;">Connect with Us</h3>
+    <div class="d-flex justify-content-center gap-4 flex-wrap">
+
+      <!-- Facebook -->
+      <a href="#" class="social-icon facebook" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <!-- Twitter -->
+      <a href="#" class="social-icon twitter" target="_blank">
+        <i class="fab fa-twitter"></i>
+      </a>
+
+      <!-- Instagram -->
+      <a href="#" class="social-icon instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="#" class="social-icon linkedin" target="_blank">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+
+      <!-- YouTube -->
+      <a href="#" class="social-icon youtube" target="_blank">
+        <i class="fab fa-youtube"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+
+
 <footer class="text-white pt-5 pb-3" style="background-color:#125A33;">
   <div class="container">
     <div class="row">
