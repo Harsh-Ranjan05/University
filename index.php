@@ -263,10 +263,20 @@
     opacity: 0.8;
     transform: scale(1.1);
   }
+  #preloader {
+  background: #927037 url('doc/animate.gif') no-repeat center center;
+  background-size: 30%;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
 
   </style>
 </head>
 <body>
+   <div id="preloader">
+    </div>
   <?php include('hd_home.php');
   ?>
  <section class="introduction">
@@ -339,9 +349,14 @@
           <div class="card-header  bg-success text-white fw-bold text-center">🎓 Admissions</div>
           <div class="card-body">
             <marquee direction="up" scrollamount="2" height="150px">
-              <p>Admissions open for 2025-26 batch!</p>
-              <p>Apply now to secure your seat.</p>
-              <p>Scholarships available for meritorious students.</p>
+            <?php
+            include('db.php');
+            $query="SELECT*FROM notice WHERE notice_type='Admission Notices' AND status='1'";
+            $result=pg_query($conn,$query);
+            while($res=pg_fetch_array($result)){
+            ?>
+              <p><?php echo  $res['description']; ?></p>
+              <?php } ?>
             </marquee>
           </div>
         </div>
@@ -351,9 +366,14 @@
           <div class="card-header  bg-success text-white text-dark fw-bold text-center">📅 Events</div>
           <div class="card-body">
             <marquee direction="up" scrollamount="2" height="150px">
-              <p>Orientation starts on 1st September.</p>
-              <p>AI & Robotics Seminar next month.</p>
-              <p>Don’t miss the Annual Fest - GYANOTSAV!</p>
+            <?php
+            include('db.php');
+            $query="SELECT*FROM notice WHERE notice_type='Event/Program Notices' AND status='1'";
+            $result=pg_query($conn,$query);
+            while($res=pg_fetch_array($result)){
+            ?>
+              <p><?php echo  $res['description']; ?></p>
+              <?php } ?>
             </marquee>
           </div>
         </div>
@@ -363,9 +383,14 @@
           <div class="card-header  bg-success text-white fw-bold text-center">🏆 Opportunities</div>
           <div class="card-body">
             <marquee direction="up" scrollamount="2" height="150px">
-              <p>Campus placement drive from 10th October.</p>
-              <p>Internships with top companies.</p>
-              <p>Skill workshops every weekend.</p>
+              <?php
+            include('db.php');
+            $query="SELECT*FROM notice WHERE notice_type='Job / Placement / Internship Notices' AND status='1'";
+            $result=pg_query($conn,$query);
+            while($res=pg_fetch_array($result)){
+            ?>
+              <p><?php echo  $res['description']; ?></p>
+              <?php } ?>
             </marquee>
           </div>
         </div>
@@ -599,6 +624,12 @@
     </div>
   </div>
 </section>
+ <script>
+        let loader = document.getElementById("preloader");
+       window.addEventListener("load",function(){
+        loader.style.display = "none";
+       })
+    </script>
 <?php include('footer.php'); ?>
 </body>
 </html>

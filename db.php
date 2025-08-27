@@ -2,6 +2,6 @@
 $servername="localhost";
 $username="postgres";
 $password="5625";
-$db="University";
+$db="uni_man";
 $conn = pg_connect("host=$servername dbname=$db user=$username password=$password");
 ?>

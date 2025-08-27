@@ -29,7 +29,7 @@
 
     .middle_header {
       background-color: #fff;
-      padding: 15px 5%;
+       padding: 5px 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
