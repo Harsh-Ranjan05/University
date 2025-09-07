@@ -7,31 +7,31 @@ if (isset($_GET['employee_id'])) {
     $query = "SELECT * FROM faculty WHERE employee_id = '$employee_id'";
     $result = pg_query($conn, $query);
     if ($res = pg_fetch_array($result)) {
-        $employee_id        = $res['employee_id'];
-        $full_name          = $res['full_name'];
-        $father_name        = $res['father_name'];
-        $mother_name        = $res['mother_name'];
-        $dob                = $res['dob'];
-        $gender             = $res['gender'];
-        $blood_group        = $res['blood_group'];
-        $aadhar_no          = $res['aadhar_no'];
-        $pan_no             = $res['pan_no'];
-        $photo              = $res['photo'];
-        $signature          = $res['signature'];
-        $mobile_no          = $res['mobile_no'];
-        $email              = $res['email'];
-        $permanent_address  = $res['permanent_address'];
-        $current_address    = $res['current_address'];
-        $department         = $res['department'];
-        $designation        = $res['designation'];
-        $joining_date       = $res['joining_date'];
-        $qualification      = $res['qualification'];
-        $certificate        = $res['certificate'];
-        $appointment_letter = $res['appointment_letter'];
-        $resume             = $res['resume'];
-        $experience_certificates = $res['experience_certificates'];
-        $bank_details       = $res['bank_details'];
-        $status             = $res['status'];
+        $id        = $res['employee_id'];
+        $name          = $res['full_name'];
+        $father_name_1       = $res['father_name'];
+        $mother_name_1       = $res['mother_name'];
+        $dob_1                = $res['dob'];
+        $gender_1            = $res['gender'];
+        $blood_group_1        = $res['blood_group'];
+        $aadhar_no_1          = $res['aadhar_no'];
+        $pan_no_1             = $res['pan_no'];
+        $photo_1             = $res['photo'];
+        $signature_1        = $res['signature'];
+        $mobile_no_1          = $res['mobile_no'];
+        $email_1           = $res['email'];
+        $permanent_address_1  = $res['permanent_address'];
+        $current_address_1    = $res['current_address'];
+        $department_1         = $res['department'];
+        $designation_1        = $res['designation'];
+        $joining_date_1       = $res['joining_date'];
+        $qualification_1      = $res['qualification'];
+        $certificate_1       = $res['certificate'];
+        $appointment_letter_1 = $res['appointment_letter'];
+        $resume_1             = $res['resume'];
+        $experience_certificates_1 = $res['experience_certificates'];
+        $bank_details_1       = $res['bank_details'];
+        $status_1            = $res['status'];
     }
 }
 ?>
@@ -144,52 +144,52 @@ if (isset($_GET['employee_id'])) {
  <div class="profile-wrapper">
     <div class="profile-card">
       <div class="profile-header">
-        <?php if(!empty($photo)) { ?>
-          <img src="doc/<?php echo $photo; ?>" alt="Photo" class="profile-img">
+        <?php if(!empty($photo_1)) { ?>
+          <img src="doc/<?php echo $photo_1; ?>" alt="Photo" class="profile-img">
         <?php } ?>
-        <h1><?php echo $full_name; ?></h1>
-        <h2><?php echo $employee_id; ?></h2>
-        <p><?php echo $designation." - ".$department; ?></p>
+        <h1><?php echo $name; ?></h1>
+        <h2><?php echo $id; ?></h2>
+        <p><?php echo $designation_1." - ".$department_1; ?></p>
       </div>
 
       <div class="profile-body">
-        <p><strong>Email:</strong> <?php echo $email; ?></p>
-        <p><strong>Mobile:</strong> <?php echo $mobile_no; ?></p>
-        <p><strong>DOB:</strong> <?php echo $dob; ?></p>
-        <p><strong>Gender:</strong> <?php echo $gender; ?></p>
-        <p><strong>Blood Group:</strong> <?php echo $blood_group; ?></p>
-        <p><strong>Aadhar No:</strong> <?php echo $aadhar_no; ?></p>
-        <p><strong>PAN No:</strong> <?php echo $pan_no; ?></p>
-        <p><strong>Department:</strong> <?php echo $department; ?></p>
-        <p><strong>Designation:</strong> <?php echo $designation; ?></p>
-        <p><strong>Joining Date:</strong> <?php echo $joining_date; ?></p>
-        <p><strong>Qualification:</strong> <?php echo $qualification; ?></p>
-        <p><strong>Permanent Address:</strong> <?php echo $permanent_address; ?></p>
-        <p><strong>Current Address:</strong> <?php echo $current_address; ?></p>
-        <p><strong>Bank Details:</strong> <?php echo $bank_details; ?></p>
+        <p><strong>Email:</strong> <?php echo $email_1; ?></p>
+        <p><strong>Mobile:</strong> <?php echo $mobile_no_1; ?></p>
+        <p><strong>DOB:</strong> <?php echo $dob_1; ?></p>
+        <p><strong>Gender:</strong> <?php echo $gender_1; ?></p>
+        <p><strong>Blood Group:</strong> <?php echo $blood_group_1; ?></p>
+        <p><strong>Aadhar No:</strong> <?php echo $aadhar_no_1; ?></p>
+        <p><strong>PAN No:</strong> <?php echo $pan_no_1; ?></p>
+        <p><strong>Department:</strong> <?php echo $department_1; ?></p>
+        <p><strong>Designation:</strong> <?php echo $designation_1; ?></p>
+        <p><strong>Joining Date:</strong> <?php echo $joining_date_1; ?></p>
+        <p><strong>Qualification:</strong> <?php echo $qualification_1; ?></p>
+        <p><strong>Permanent Address:</strong> <?php echo $permanent_address_1; ?></p>
+        <p><strong>Current Address:</strong> <?php echo $current_address_1; ?></p>
+        <p><strong>Bank Details:</strong> <?php echo $bank_details_1; ?></p>
       </div>
 
       <div class="profile-footer">
-       <?php if ($status == 1) { ?>
-          <a href="status.php?table=faculty&id=<?php echo urlencode($employee_id); ?>" class="btn-1">Active</a>
+       <?php if ($status_1 == 1) { ?>
+          <a href="status.php?table=faculty&id=<?php echo urlencode($id); ?>" class="btn-1">Active</a>
        <?php } else { ?>
-          <a href="status.php?table=faculty&id=<?php echo urlencode($employee_id); ?>" class="btn-2">Deactive</a>
+          <a href="status.php?table=faculty&id=<?php echo urlencode($id); ?>" class="btn-2">Deactive</a>
        <?php } ?>
 
         <?php if(!empty($certificate)) { ?>
-          <a href="pdf/<?php echo $certificate; ?>" download="<?php echo $certificate; ?>" class="btn">Download Certificate</a>
+          <a href="pdf/<?php echo $certificate; ?>" download="<?php echo $certificate_1; ?>" class="btn">Download Certificate</a>
         <?php } ?>
         <?php if(!empty($experience_certificates)) { ?>
-          <a href="pdf/<?php echo $experience_certificates; ?>" download="<?php echo $experience_certificates; ?>" class="btn">Download Experience</a>
+          <a href="pdf/<?php echo $experience_certificates; ?>" download="<?php echo $experience_certificates_1; ?>" class="btn">Download Experience</a>
         <?php } ?>
         <?php if(!empty($resume)) { ?>
-          <a href="pdf/<?php echo $resume; ?>" download="<?php echo $resume; ?>" class="btn">Download Resume</a>
+          <a href="pdf/<?php echo $resume; ?>" download="<?php echo $resume_1; ?>" class="btn">Download Resume</a>
         <?php } ?>
         <?php if(!empty($appointment_letter)) { ?>
-          <a href="pdf/<?php echo $appointment_letter; ?>" download="<?php echo $appointment_letter; ?>" class="btn">Download Appointment</a>
+          <a href="pdf/<?php echo $appointment_letter; ?>" download="<?php echo $appointment_letter_1; ?>" class="btn">Download Appointment</a>
         <?php } ?>
 
-        <a href="edit_faculty.php?employee_id=<?php echo urlencode($employee_id); ?>" class="btn-2">Edit</a>
+        <a href="edit_faculty.php?employee_id=<?php echo urlencode($id); ?>" class="btn-2">Edit</a>
       </div>
     </div>
   </div>

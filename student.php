@@ -2,45 +2,45 @@
 include('db.php');
 
 if (isset($_POST['submit'])) {
-    $full_name = $_POST['full_name'];
-    $father_name = $_POST['father_name'];
-    $mother_name = $_POST['mother_name'];
-    $dob = $_POST['dob'];
-    $gender = $_POST['gender'];
-    $blood_group = $_POST['blood_group'];
-    $category = $_POST['category'];
+    $name = $_POST['full_name'];
+    $father_name_1 = $_POST['father_name'];
+    $mother_name_1 = $_POST['mother_name'];
+    $dob_1= $_POST['dob'];
+    $gender_1 = $_POST['gender'];
+    $blood_group_1 = $_POST['blood_group'];
+    $category_1= $_POST['category'];
 
     // Upload caste certificate
-    $originalcaste = $_FILES['caste_certificate']['name'];
-    $tempcaste = $_FILES['caste_certificate']['tmp_name'];
-    move_uploaded_file($tempcaste, "pdf/$originalcaste");
+    $originalcaste_1 = $_FILES['caste_certificate']['name'];
+    $tempcaste_1 = $_FILES['caste_certificate']['tmp_name'];
+    move_uploaded_file($tempcaste_1, "pdf/$originalcaste_1");
 
-    $aadhar_no = $_POST['aadhar_no'];
+    $aadhar_no_1 = $_POST['aadhar_no'];
 
     // Upload photo
-    $originalphoto = $_FILES['photo']['name'];
-    $tempphoto = $_FILES['photo']['tmp_name'];
-    move_uploaded_file($tempphoto, "doc/$originalphoto");
+    $originalphoto_1 = $_FILES['photo']['name'];
+    $tempphoto_1= $_FILES['photo']['tmp_name'];
+    move_uploaded_file($tempphoto_1, "doc/$originalphoto_1");
 
-    $mobile_no = $_POST['mobile_no'];
-    $parent_mobile_no = $_POST['parent_mobile_no'];
-    $email = $_POST['email'];
-    $permanent_address  = $_POST['permanent_address'];
-    $current_address  = $_POST['current_address'];
-    $department = $_POST['department'];
-    $branch = $_POST['branch'];
-    $program = $_POST['program'];
+    $mobile_no_1 = $_POST['mobile_no'];
+    $parent_mobile_no_1 = $_POST['parent_mobile_no'];
+    $email_1 = $_POST['email'];
+    $permanent_address_1  = $_POST['permanent_address'];
+    $current_address_1  = $_POST['current_address'];
+    $department_1 = $_POST['department'];
+    $branch_1 = $_POST['branch'];
+    $program_1 = $_POST['program'];
   
 
     // Upload 10th & 12th certificates
-    $originaldoc_10th_doc_12th = $_FILES['doc_10th_doc_12th']['name'];
-    $tempdoc_10th_doc_12th = $_FILES['doc_10th_doc_12th']['tmp_name'];
-    move_uploaded_file($tempdoc_10th_doc_12th, "pdf/$originaldoc_10th_doc_12th");
+    $originaldoc_10th_doc_12th_1 = $_FILES['doc_10th_doc_12th']['name'];
+    $tempdoc_10th_doc_12th_1 = $_FILES['doc_10th_doc_12th']['tmp_name'];
+    move_uploaded_file($tempdoc_10th_doc_12th_1, "pdf/$originaldoc_10th_doc_12th_1");
 
     // Upload signature
-    $originalsignature = $_FILES['signature']['name'];
-    $tempsignature = $_FILES['signature']['tmp_name'];
-    move_uploaded_file($tempsignature, "doc/$originalsignature");
+    $originalsignature_1 = $_FILES['signature']['name'];
+    $tempsignature_1 = $_FILES['signature']['tmp_name'];
+    move_uploaded_file($tempsignature_1, "doc/$originalsignature_1");
 
     // Insert Query
     $query = "INSERT INTO students (
@@ -49,9 +49,9 @@ if (isset($_POST['submit'])) {
                 permanent_address, current_address, department, branch, program, doc_10th_doc_12th, signature
               ) 
               VALUES (
-                '$full_name', '$father_name', '$mother_name', '$dob', '$gender', '$blood_group', '$category',
-                '$originalcaste', '$aadhar_no', '$originalphoto', '$mobile_no', '$parent_mobile_no', '$email',
-                '$permanent_address', '$current_address', '$department', '$branch', '$program', '$originaldoc_10th_doc_12th', '$originalsignature'
+                '$name', '$father_name_1', '$mother_name_1', '$dob_1', '$gender_1', '$blood_group_1', '$category_1',
+                '$originalcaste_1', '$aadhar_no_1', '$originalphoto_1', '$mobile_no_1', '$parent_mobile_no_1', '$email_1',
+                '$permanent_address_1', '$current_address_1', '$department_1', '$branch_1', '$program_1', '$originaldoc_10th_doc_12th_1', '$originalsignature_1'
               )";
 
     $result = pg_query($conn, $query);
@@ -120,23 +120,23 @@ if (isset($_POST['submit'])) {
       <form method="POST" enctype="multipart/form-data">
         <div class="form-group">
           <label for="name">Full Name</label>
-          <input type="text" id="name" name="full_name" placeholder="Enter full name">
+          <input type="text" id="name" name="name" placeholder="Enter full name">
         </div>
         <div class="form-group">
           <label for="name">Father Name</label>
-          <input type="text" id="name" name="father_name" placeholder="Enter father name">
+          <input type="text" id="name" name="father_name_1" placeholder="Enter father name">
         </div>
         <div class="form-group">
           <label for="name">Mother Name</label>
-          <input type="text" id="name" name="mother_name" placeholder="Enter mother name">
+          <input type="text" id="name" name="mother_name_1" placeholder="Enter mother name">
         </div>
         <div class="form-group">
           <label for="name">D.O.B</label>
-          <input type="date" id="name" name="dob">
+          <input type="date" id="name" name="dob_1">
         </div>
          <div class="form-group">
           <label for="gender">Gender</label>
-          <select id="gender" name="gender" required>
+          <select id="gender" name="gender_1" required>
             <option value="">-- Select Gender --</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -147,7 +147,7 @@ if (isset($_POST['submit'])) {
 
           <label for="blood_group">Blood Group</label>
 
-          <select id="blood_group" name="blood_group">
+          <select id="blood_group" name="blood_group_1">
              <option value="">-- Select Blood Group --</option>
            <option value="A+">A+</option>
              <option value="A-">A-</option>
@@ -161,7 +161,7 @@ if (isset($_POST['submit'])) {
        </div>
        <div class="form-group">
   <label for="category">Caste Category</label>
-  <select id="category" name="category">
+  <select id="category" name="category_1">
     <option value="">-- Select Caste Category --</option>
     <option value="GEN">General (GEN)</option>
     <option value="OBC">Other Backward Classes (OBC - Non-Creamy Layer)</option>
@@ -174,7 +174,7 @@ if (isset($_POST['submit'])) {
 </div>
    <div class="form-group">
           <label for="ac_cer">Caste Certificate</label>
-          <input type="file" id="ac_cer" name="caste_certificate">
+          <input type="file" id="ac_cer" name="caste_certificate_1">
         </div>
           <div class="form-group">
           <label for="name">Aadhar No.</label>
@@ -182,61 +182,68 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="form-group">
           <label for="ac_cer">Upload Photo</label>
-          <input type="file" id="ac_cer" name="photo">
+          <input type="file" id="ac_cer" name="photo_1">
         </div>
         <div class="form-group">
           <label for="ac_cer">Upload Signature</label>
-          <input type="file" id="ac_cer" name="signature">
+          <input type="file" id="ac_cer" name="signature_1">
         </div>
        <div class="form-group">
           <label for="name">Mobile No.</label>
-          <input type="text" id="name" name="mobile_no" placeholder="Enter mobile no">
+          <input type="text" id="name" name="mobile_no_1" placeholder="Enter mobile no">
         </div>
          <div class="form-group">
           <label for="name">Parent Phone No.</label>
-          <input type="text" id="name" name="parent_mobile_no" placeholder="Enter parent phone no">
+          <input type="text" id="name" name="parent_mobile_no_1" placeholder="Enter parent phone no">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Enter email" required>
+          <input type="email" id="email" name="email_1" placeholder="Enter email" required>
         </div>
          <div class="form-group">
           <label for="permanent_address">Permanent Address</label>
-          <textarea id="permanent_address" name="permanent_address" placeholder="Enter permanent address" rows="4"></textarea>
+          <textarea id="permanent_address" name="permanent_address_1" placeholder="Enter permanent address" rows="4"></textarea>
         </div>
         <div class="form-group">
           <label for="current_address">Current Address</label>
-          <textarea id="current_address" name="current_address" placeholder="Enter current address" rows="4"></textarea>
+          <textarea id="current_address" name="current_address_1" placeholder="Enter current address" rows="4"></textarea>
         </div>
         <div class="form-group">
           <label for="dept">Department</label>
-          <select id="dept" name="department" required>
-            <option value="">Select Department</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Mechanical">Mechanical</option>
-            <option value="Civil">Civil</option>
-          </select>
+          <select name="department_1" required>
+                  <option value="">--select-department--</option>
+                  <?php 
+                  $result = pg_query($conn, "SELECT * FROM department");
+                  while($f = pg_fetch_array($result)){ ?>
+                    <option value="<?php echo $f['department']; ?>"><?php echo $f['department']; ?></option>
+                  <?php } ?>
+                </select>
         </div>
         <div class="form-group">
-          <label for="branch">Branch</label>
-          <select id="branch" name="branch" required>
-            <option value="">Select Branch</option>
-            <option value="CSE">CSE</option>
-            <option value="ECE">ECE</option>
-            <option value="ME">ME</option>
-          </select>
+          <label for="brch">Branch</label>
+           <select name="branch_1" required>
+                  <option value="">--select-branch--</option>
+                  <?php 
+                  $result = pg_query($conn, "SELECT * FROM branch");
+                  while($f = pg_fetch_array($result)){ ?>
+                    <option value="<?php echo $f['branch']; ?>"><?php echo $f['branch']; ?></option>
+                  <?php } ?>
+                </select>
         </div>
         <div class="form-group">
-          <label for="program">Program</label>
-          <select id="program" name="program" required>
-            <option value="">Select Program</option>
-            <option value="DIP-CSE">DIP-CSE</option>
-            <option value="DIP-CIVIL">DIP-CIVIL</option>
-          </select>
+          <label for="brch">Program</label>
+           <select name="program_1" required>
+                  <option value="">--select-program--</option>
+                  <?php 
+                  $result = pg_query($conn, "SELECT * FROM program");
+                  while($f = pg_fetch_array($result)){ ?>
+                    <option value="<?php echo $f['program']; ?>"><?php echo $f['program']; ?></option>
+                  <?php } ?>
+                </select>
         </div>
         <div class="form-group">
           <label for="ac_cer">Doc 10th/12th class</label>
-          <input type="file" id="ac_cer" name="doc_10th_doc_12th">
+          <input type="file" id="ac_cer" name="doc_10th_doc_12th_1">
         </div>
         <button type="submit" name="submit" class="btn">Add +</button>
       </form>
@@ -253,7 +260,7 @@ if (isset($_POST['submit'])) {
             <th>Department</th>
             <th>Branch</th>
             <th>Program</th>
-            <th>Check</th>
+            <th>Details</th>
           </tr>
         </thead>
         <tbody>

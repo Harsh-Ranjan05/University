@@ -9,15 +9,15 @@ while($res=pg_fetch_array($result)){
   $subject_name  = $res['subject_name'];
   $day = $res['day'];
   $period = $res['period'];
-  $department = $res['department'];
-  $branch = $res['branch'];
-  $program = $res['program'];
-  $semester = $res['semester'];
-  $section = $res['section'];
+  $department_1 = $res['department'];
+  $branch_1 = $res['branch'];
+  $program_1 = $res['program'];
+  $semester_1 = $res['semester'];
+  $section_1 = $res['section'];
   $room_no = $res['room_no'];
-  $class_code = $res['class_code'];
+  $class_code_1 = $res['class_code'];
   $batch = $res['batch'];
-  $allot = $res['allot'];
+  $full_name = $res['full_name'];
 }
 }
 ?>
@@ -94,7 +94,7 @@ body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
   <div class="profile">Admin ▼</div>
 </header>
 
-<h2 id="h2">📅 <?php echo $program; ?>  Semester-<?php echo  $semester; ?> - Section-<?php echo $section; ?></h2>
+<h2 id="h2">📅 <?php echo $program_1; ?>  Semester-<?php echo  $semester_1; ?> Section-<?php echo $section_1; ?></h2>
 
 <div class="timetable">
   <!-- Header Row -->
@@ -112,89 +112,89 @@ body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
   <div class="box day">Monday</div>
   <div class="box">
       <?php 
-        $query="SELECT*FROM allot WHERE day='Monday' AND period='1' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Monday' AND period='1' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
       <?php 
-        $query="SELECT*FROM allot WHERE day='Monday' AND period='2' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Monday' AND period='2' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
        <?php 
-        $query="SELECT*FROM allot WHERE day='Monday' AND period='3' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Monday' AND period='3' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
         <?php 
-        $query="SELECT*FROM allot WHERE day='Monday' AND period='4' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Monday' AND period='4' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Monday' AND period='5' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Monday' AND period='5' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
     </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Monday' AND period='6' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Monday' AND period='6' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> 
     <?php 
-        $query="SELECT*FROM allot WHERE day='Monday' AND period='7' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Monday' AND period='7' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?></div>
   <div class="box">
        <?php 
-        $query="SELECT*FROM allot WHERE day='Monday' AND period='8' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Monday' AND period='8' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
 
@@ -202,177 +202,177 @@ body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
   <div class="box day">Tuesday</div>
   <div class="box">
        <?php 
-        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='1' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='1' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> 
     <?php 
-        $query="SELECT*FROM allot WHERE day='Tuseday' AND period='2' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Tuseday' AND period='2' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
       </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='3' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='3' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> 
     <?php 
-        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='4' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='4' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
       </div>
   <div class="box"> 
     <?php 
-        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='5' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='5' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?></div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='6' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='6' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='7' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='7' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> <?php 
-        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='8' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Tuesday' AND period='8' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?></div>
 
   <!-- Wednesday -->
   <div class="box day">Wednesday</div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='1' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='1' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='2' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='2' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='3' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='3' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> 
     <?php 
-        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='4' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='4' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?></div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='5' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='5' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='6' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='6' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='7' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='7' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> 
     <?php 
-        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='8' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Wednesday' AND period='8' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
       </div>
 
@@ -380,90 +380,90 @@ body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
   <div class="box day">Thursday</div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Thursday' AND period='1' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Thursday' AND period='1' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Thursday' AND period='2' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Thursday' AND period='2' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Thursday' AND period='3' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Thursday' AND period='3' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Thursday' AND period='4' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Thursday' AND period='4' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Thursday' AND period='5' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Thursday' AND period='5' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Thursday' AND period='6' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Thursday' AND period='6' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Thursday' AND period='7' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Thursday' AND period='7' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
    <?php 
-        $query="SELECT*FROM allot WHERE day='Thursday' AND period='8' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Thursday' AND period='8' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
 
@@ -471,90 +471,90 @@ body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
   <div class="box day">Friday</div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Friday' AND period='1' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Friday' AND period='1' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Friday' AND period='2' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Friday' AND period='2' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+     <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> 
     <?php 
-        $query="SELECT*FROM allot WHERE day='Friday' AND period='3' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Friday' AND period='3' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
       </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Friday' AND period='4' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Friday' AND period='4' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> 
     <?php 
-        $query="SELECT*FROM allot WHERE day='Friday' AND period='5' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Friday' AND period='5' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
       </div>
   <div class="box">
    <?php 
-        $query="SELECT*FROM allot WHERE day='Friday' AND period='6' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Friday' AND period='6' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Friday' AND period='7' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Friday' AND period='7' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
    <?php 
-        $query="SELECT*FROM allot WHERE day='Friday' AND period='8' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Friday' AND period='8' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
 
@@ -562,88 +562,88 @@ body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
   <div class="box day">Saturday</div>
   <div class="box">
    <?php 
-        $query="SELECT*FROM allot WHERE day='Saturday' AND period='1' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Saturday' AND period='1' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Saturday' AND period='2' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Saturday' AND period='2' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
      <?php 
-        $query="SELECT*FROM allot WHERE day='Saturday' AND period='3' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Saturday' AND period='3' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box"> <?php 
-        $query="SELECT*FROM allot WHERE day='Saturday' AND period='4' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Saturday' AND period='4' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+      <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?></div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Saturday' AND period='5' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Saturday' AND period='5' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
    <?php 
-        $query="SELECT*FROM allot WHERE day='Saturday' AND period='6' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Saturday' AND period='6' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+       <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
     <?php 
-        $query="SELECT*FROM allot WHERE day='Saturday' AND period='7' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Saturday' AND period='7' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
   </div>
   <div class="box">
    <?php 
-        $query="SELECT*FROM allot WHERE day='Saturday' AND period='8' AND class_code='$class_code'";
+        $query="SELECT*FROM allot WHERE day='Saturday' AND period='8' AND class_code='$class_code_1'";
         $result=pg_query($conn,$query);
         while($res=pg_fetch_array($result)){
       ?>
         <div class="subject"><?php echo $res['subject_name']; ?></div>
         <div class="room">Room-<?php echo $res['room_no']; ?></div>
-        <div class="faculty"><?php echo $res['allot']; ?></div>
+        <div class="faculty"><?php echo $res['full_name']; ?></div>
         <?php } ?>
 
   </div>

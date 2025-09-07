@@ -137,6 +137,9 @@ if (isset($_POST['submit'])) {
   <optgroup label="Careers">
     <option value="Job / Placement / Internship Notices">Job / Placement / Internship Notices</option>
   </optgroup>
+  <optgroup label="Holiday">
+    <option value="Festival Holiday">Festival Holiday</option>
+  </optgroup>
 </select>
 
         </div>
@@ -183,7 +186,16 @@ if (isset($_POST['submit'])) {
             <td><?php echo $res['title']; ?></td>
             <td><?php echo $res['notice_type']; ?></td>
             <td><?php echo $res['description']; ?></td>
-            <td><img src="doc/<?php echo $res['picture']; ?>" alt="" id="img"></td>
+          <td>
+<?php 
+if(!empty($res['picture'])) {
+    echo '<img src="doc/'.$res['picture'].'" alt="Picture" id="img">';
+} else {
+    echo 'No Picture';
+}
+?>
+</td>
+
             <td>  <?php 
 if ($res['status'] == 1) { ?>
     <a href="status.php?table=notice&id=<?php echo $id; ?>" class="btn-1">Active</a>

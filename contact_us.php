@@ -1,4 +1,24 @@
-<?php include('db.php'); ?>
+<?php 
+include('db.php');
+if(isset($_POST['submit'])){
+  $full_name = $_POST['full_name'];
+  $mobile_no = $_POST['mobile_no'];
+  $email = $_POST['email'];
+  $subject = $_POST['subject'];
+  $message = $_POST['message'];
+  
+  $query="INSERT INTO contact_us(full_name,mobile_no,email,subject,message) 
+          VALUES('$full_name','$mobile_no','$email','$subject','$message')";
+  
+  $result = pg_query($conn,$query);
+  if($result){
+    echo "<script>alert('Send Successfully.. Reply After 24 hr'); window.location='contact_us.php';</script>";
+  }else{
+    echo "<script>alert('Failed To Send..'); window.location='contact_us.php';</script>";
+  }
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +54,7 @@
             <i class="fas fa-map-marker-alt fa-2x text-success me-3"></i>
             <div>
               <h5 class="mb-1">Our Location</h5>
-              <p class="mb-0">RCU Campus, Nawadihkala, Bishrampur, Palamu, Jharkhand - 822132</p>
+              <p class="mb-0">BPU Campus, Nawadihkala, Bishrampur, Palamu, Jharkhand - 822132</p>
             </div>
           </div>
           <div class="d-flex align-items-start mb-3">
@@ -58,25 +78,25 @@
       <div class="col-lg-8">
         <div class="bg-white p-4 rounded shadow-sm h-100">
           <h5 class="mb-4" style="color:#125A33;">Send Us a Message</h5>
-          <form>
+          <form method="POST">
             <div class="row g-3">
               <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Your Name" required>
+                <input type="text" name="full_name" class="form-control" placeholder="Your Name" required>
               </div>
               <div class="col-md-6">
-                <input type="email" class="form-control" placeholder="Your Email" required>
+                <input type="email" name="email" class="form-control" placeholder="Your Email" required>
               </div>
               <div class="col-md-6">
-                <input type="tel" class="form-control" placeholder="Your Phone" required>
+                <input type="tel" name="mobile_no" class="form-control" placeholder="Your Phone" required>
               </div>
               <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Subject" required>
+                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
               </div>
               <div class="col-12">
-                <textarea class="form-control" rows="4" placeholder="Your Message" required></textarea>
+                <textarea class="form-control" rows="4" name="message" placeholder="Your Message" required></textarea>
               </div>
               <div class="col-12 text-end">
-                <button type="submit" class="btn btn-success px-4">
+                <button type="submit" name="submit" class="btn btn-success px-4">
                   <i class="fas fa-paper-plane me-2"></i>Send Message
                 </button>
               </div>

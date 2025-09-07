@@ -10,34 +10,35 @@ if(isset($_GET['id'])){
     $query = "SELECT * FROM class_room WHERE id='$id'";
     $result = pg_query($conn, $query);
     if($res = pg_fetch_array($result)){
-        $department = $res['department'];
-        $branch     = $res['branch'];
-        $program    = $res['program'];
-        $semester   = $res['semester'];
-        $section    = $res['section'];
-        $room_no    = $res['room_no'];
-        $class_code    = $res['class_code'];
-        $batch      = $res['batch'];
+        $department_1 = $res['department'];
+        $branch_1     = $res['branch'];
+        $program_1    = $res['program'];
+        $semester_1  = $res['semester'];
+        $section_1   = $res['section'];
+        $room_no_1    = $res['room_no'];
+        $class_code_1    = $res['class_code'];
+        $batch_1    = $res['batch'];
     }
 }
 
 if(isset($_POST['submit'])){
-    $subject_code = $_POST['subject_code'];
-    $subject_name = $_POST['subject_name'];
-    $day     = $_POST['day'];
-    $period       = $_POST['period'];
-    $department   = $_POST['department'];
-    $branch       = $_POST['branch'];
-     $program      = $_POST['program'];
-    $semester     = $_POST['semester'];
-    $section      = $_POST['section'];
-    $room_no      = $_POST['room_no'];
-    $class_code       = $_POST['class_code'];
-    $batch        = $_POST['batch'];
-    $allot        = $_POST['allot'];
+    $subject_code_1 = $_POST['subject_code'];
+    $subject_name_1 = $_POST['subject_name'];
+    $day_1     = $_POST['day'];
+    $period_1      = $_POST['period'];
+    $department_1   = $_POST['department'];
+    $branch_1       = $_POST['branch'];
+     $program_1     = $_POST['program'];
+    $semester_1    = $_POST['semester'];
+    $section_1     = $_POST['section'];
+    $room_no_1      = $_POST['room_no'];
+    $class_code_1      = $_POST['class_code'];
+    $batch_1      = $_POST['batch'];
+    $name       = $_POST['full_name'];
+    $id        = $_POST['employee_id'];
 
-    $query = "INSERT INTO allot(subject_code,subject_name,day,period,department,branch,program,semester,section,room_no,class_code,batch,allot) 
-              VALUES('$subject_code','$subject_name','$day','$period','$department','$branch','$program','$semester','$section','$room_no','$class_code','$batch','$allot')";
+    $query = "INSERT INTO allot(subject_code,subject_name,day,period,department,branch,program,semester,section,room_no,class_code,batch,full_name,employee_id) 
+              VALUES('$subject_code_1','$subject_name_1','$day_1','$period_1','$department_1','$branch_1','$program_1','$semester_1','$section_1','$room_no_1','$class_code_1','$batch_1','$name','$id')";
     $result = pg_query($conn, $query);
     if($result){
         echo "<script>alert('Added Successfully..'); window.location='class.php';</script>";
@@ -104,14 +105,15 @@ tr:hover { background:#f1f1f1; }
         <th>Subject Name</th>
         <th>Day</th>
         <th>Period</th>
-        <th>Allotted Faculty</th>
+        <th>Faculty</th>
+        <th>Faculty ID</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr>
        <td>
-  <select name="subject_code" id="subject_code" required>
+  <select name="subject_code_1" id="subject_code" required>
     <option value="">--select-subject-code--</option>
     <?php 
     $query="SELECT * FROM subject";
@@ -125,7 +127,7 @@ tr:hover { background:#f1f1f1; }
 </td>
 
 <td>
-  <select name="subject_name" id="subject_name" required>
+  <select name="subject_name_1" id="subject_name" required>
     <option value="">--select-subject-name--</option>
     <?php 
     $query="SELECT * FROM subject";
@@ -139,7 +141,7 @@ tr:hover { background:#f1f1f1; }
 </td>
          <td>
 
-<select name="day" id="day" required>
+<select name="day_1" id="day" required>
     <option value="">--Select Day--</option>
     <option value="Monday">Monday</option>
     <option value="Tuesday">Tuesday</option>
@@ -152,7 +154,7 @@ tr:hover { background:#f1f1f1; }
 
             </td>
         <td>
-          <select id="period" name="period" required>
+          <select id="period_1" name="period" required>
             <option value="">-- Select Period --</option>
             <?php for($i=1;$i<=8;$i++){ ?>
               <option value="<?php echo $i; ?>"><?php echo $i; ?><?php echo ($i==1?"st":($i==2?"nd":($i==3?"rd":"th"))); ?> Period</option>
@@ -160,30 +162,46 @@ tr:hover { background:#f1f1f1; }
           </select>
         </td>
       
-         <input type="hidden" name="department" id="" value="<?php echo $department;?>">
+         <input type="hidden" name="department_1" id="" value="<?php echo $res['department'];?>">
 
-        <input type="hidden" name="branch" id="" value="<?php echo $branch; ?>">
+        <input type="hidden" name="branch_1" id="" value="<?php echo $res['branch']; ?>">
 
-          <input type="hidden" name="program" id="" value="<?php echo $program; ?>">
-         <input type="hidden" name="semester" value="<?php echo $semester; ?>">
+          <input type="hidden" name="program_1" id="" value="<?php echo $res['program']; ?>">
+         <input type="hidden" name="semester_1" value="<?php echo $res['semester']; ?>">
 
-         <input type="hidden" name="section" value="<?php echo $section; ?>">
+         <input type="hidden" name="section_1" value="<?php echo $res['section']; ?>">
 
-        <input type="hidden" name="room_no" value="<?php echo $room_no; ?>">
-          <input type="hidden" name="class_code" value="<?php echo $class_code; ?>">
-        <input type="hidden" name="batch" value="<?php echo $batch; ?>">
+        <input type="hidden" name="room_no_1" value="<?php echo $res['room_no']; ?>">
+          <input type="hidden" name="class_code_1" value="<?php echo $res['class_code']; ?>">
+        <input type="hidden" name="batch_1" value="<?php echo $res['batch']; ?>">
+        
+      <td>
+         <select name="name" required>
+  <option value="">--select-faculty--</option>
+  <?php 
+  $faculty_result = pg_query($conn, "SELECT * FROM faculty");
+  while($f = pg_fetch_array($faculty_result)) { ?>
+    <option value="<?php echo $f['full_name']; ?>">
+      <?php echo $f['full_name'] . " (" . $f['employee_id'] . ")"; ?>
+    </option>
+  <?php } ?>
+</select>
+ <td>
+         <select name="id" required>
+  <option value="">--select-employee-id--</option>
+  <?php 
+  $faculty_result = pg_query($conn, "SELECT * FROM faculty");
+  while($f = pg_fetch_array($faculty_result)) { ?>
+    <option value="<?php echo $f['employee_id']; ?>">
+      <?php echo  $f['employee_id']; ?>
+    </option>
+  <?php } ?>
+</select>
 
-        <td>
-          <select name="allot" required>
-            <option value="">--select-faculty--</option>
-            <?php 
-            $faculty_result = pg_query($conn, "SELECT * FROM faculty");
-            while($f = pg_fetch_array($faculty_result)){ ?>
-              <option value="<?php echo $f['full_name']; ?>"><?php echo $f['full_name']; ?></option>
-            <?php } ?>
-          </select>
+
         </td>
-
+       
+            <?php ?>
         <td><button name="submit" type="submit" class="btn-assign">Allot</button></td>
       </tr>
     </tbody>
@@ -202,12 +220,16 @@ tr:hover { background:#f1f1f1; }
             <th>Section</th>
             <th>Room No.</th>
             <th>Batch</th>
-            <th>Time Table</th>
+            <th>Period</th>
           </tr>
         </thead>
         <tbody>
          <?php 
-         $query="SELECT * FROM allot WHERE class_code='$class_code'";
+        $query = "SELECT DISTINCT ON (subject_code) *
+          FROM allot
+          WHERE class_code='$class_code_1'
+          ORDER BY subject_code";
+
          $result=pg_query($conn,$query);
          while($res=pg_fetch_array($result)){
          ?>
