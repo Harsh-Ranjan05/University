@@ -18,95 +18,26 @@ if(isset($_GET['student_id'])){
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University CRM - Class Allotment</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-    body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
-    .result-container {
-      background: #fff;
-      max-width: 900px;
-      margin: auto;
-      padding: 30px;
-      border: 2px solid #222;
-      border-radius: 10px;
-    }
-    .header {
-      text-align: center;
-      border-bottom: 2px solid #222;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-    }
-    .header h1 {
-      font-size: 28px;
-      margin-bottom: 5px;
-    }
-    .header h2 {
-      font-size: 20px;
-      font-weight: normal;
-      color: #444;
-    }
-    .student-info {
-      margin-bottom: 20px;
-    }
-    .student-info table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .student-info td {
-      padding: 6px 8px;
-      font-size: 15px;
-    }
-    .marks-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-    .marks-table th, .marks-table td {
-      border: 1px solid #444;
-      padding: 8px;
-      text-align: center;
-    }
-    .marks-table th {
-      background: #eaeaea;
-    }
-    .result-summary {
-      margin-top: 20px;
-      font-size: 16px;
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-    }
-    .footer {
-      text-align: right;
-      margin-top: 40px;
-    }
-    .footer p {
-      margin-top: 60px;
-      font-weight: bold;
-    }
-  </style>
-</head>
+
 <body>
   <?php include('navbar.php'); ?>
   <main class="main-content">
-    <header class="topbar">
-      <h1>View-Marksheet</h1>
-      <div class="profile">Admin ▼</div>
-    </header>
-<div class="result-container">
+   <header class="topbar d-flex justify-content-between mb-3">
+    <h1 class="h4 fw-bold text-primary">Marksheet</h1>
+    <div class="profile fw-semibold">Welcome,  <?= ($role_type == 'student' || $role_type == 'faculty'  || $role_type == 'admin') 
+    ? $full_name 
+    : $father_name ?>
+</div>
+  </header>
+<div class="result-container_1">
     <!-- Header -->
-    <div class="header">
+    <div class="header_1">
       <h1>BHARTI GYANPEETH</h1>
       <h2>Semester Examination Result</h2>
     </div>
 
     <!-- Student Information -->
-    <div class="student-info">
+    <div class="student-info_1">
       <table>
         <tr>
           <td><strong>Student ID:</strong> <?php echo $student_id_1; ?></td>
@@ -124,7 +55,7 @@ if(isset($_GET['student_id'])){
     </div>
 
     <!-- Marks Table -->
-    <table class="marks-table">
+    <table class="marks-table_1">
       <thead>
         <tr>
           <th>Subject Code</th>
@@ -185,17 +116,17 @@ if ($percentage >= 40) {
 </table>
 
 <!-- Result Summary -->
-<div class="result-summary">
+<div class="result-summary_1">
   <span>Total Marks: <?php echo $total_marks; ?></span>
   <span>Marks Obtained: <?php echo $marks_obtained; ?></span>
   <span>Percentage: <?php echo number_format($percentage, 2); ?>%</span>
   <span>Result: <?php echo $result_status; ?></span>
 </div>
 
-    <div class="footer">
+    <div class="footer_1">
       <p>Controller of Examination</p>
     </div>
   </div>
   </main>
 </body>
-</html>
+

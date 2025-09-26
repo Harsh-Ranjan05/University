@@ -1,107 +1,109 @@
 <?php
 include('db.php');
+include('navbar.php');
+
+// -------------------------
+// Get student info
+// -------------------------
 if (isset($_GET['student_id'])) {
     $id = $_GET['student_id'];
     $query = "SELECT * FROM students WHERE student_id='$id'";
     $result = pg_query($conn, $query);
-    if($res = pg_fetch_array($result)){
-        $id            = $res['student_id'];
-        $student_name  = $res['full_name'];
+    if ($res = pg_fetch_array($result)) {
+        $student_name = $res['full_name'];
+        $id   = $res['student_id'];
     }
 }
 
-if(isset($_POST['submit'])){
+// -------------------------
+// Insert feedback
+// -------------------------
+if (isset($_POST['submit'])) {
     $student_id   = $_POST['student_id'];
     $student_name = $_POST['student_name'];
     $faculty_id   = $_POST['faculty_id'];
     $faculty_name = $_POST['faculty_name'];
     $role_type    = $_POST['role_type'];
-    $subject_code = $_POST['subject_code'];
     $description  = $_POST['description'];
 
-    $query_1="INSERT INTO feedback(student_id,student_name,faculty_id,faculty_name,role_type,subject_code,description) 
-              VALUES('$id','$student_name','$faculty_id','$faculty_name','$role_type','$subject_code','$description')";
-    $result_1=pg_query($conn, $query_1);
+    $query_1 = "INSERT INTO feedback(student_id,student_name,faculty_id,faculty_name,role_type,description) 
+                VALUES('$student_id','$student_name','$faculty_id','$faculty_name','$role_type','$description')";
+    $result_1 = pg_query($conn, $query_1);
 
-    if($result_1){
+    if ($result_1) {
         echo "<script>alert('Feedback Added Successfully..'); window.location='faculty_feedback.php';</script>";
-    }else{
+    } else {
         echo "<script>alert('Failed To Add..'); window.location='faculty_feedback.php';</script>";
     }
 }
-?>
 
+// -------------------------
+// Pagination Setup
+// -------------------------
+$limit = 5; // rows per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $limit;
+
+// Count total rows
+$count_query = "SELECT COUNT(*) FROM feedback WHERE faculty_id='$employee_id' AND role_type='student'";
+$count_result = pg_query($conn, $count_query);
+$total_rows = pg_fetch_result($count_result, 0, 0);
+$total_pages = ceil($total_rows / $limit);
+
+// Fetch feedback with limit
+$feedback_query = "SELECT * FROM feedback 
+                   WHERE faculty_id='$employee_id' AND role_type='student' 
+                   ORDER BY id DESC LIMIT $limit OFFSET $offset";
+$feedback_result = pg_query($conn, $feedback_query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University CRM - Faculty Dashboard</title>
+  <title>University CRM - Faculty Feedback</title>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', sans-serif;}
-    body { display: flex; min-height: 100vh; background:#f4f6f9; }
-    .content { display:flex; padding:10px; gap:5px; flex:1; }
-    .form-container { flex:1; background:white; padding:20px; border-radius:12px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-    .form-container h2 { margin-bottom:15px; }
-    .form-group { margin-bottom:15px; }
-    .form-group label { display:block; margin-bottom:6px; font-weight:600; }
-    .form-group input, .form-group select, .form-group textarea { width:100%; padding:10px; border:1px solid #ccc; border-radius:6px; }
-    .btn { background:#007bff; color:white; padding:10px 15px; border:none; border-radius:6px; cursor:pointer; }
-    .btn:hover { background:#0056b3; }
-    .table-container { flex:2; background:white; padding:10px; border-radius:12px; box-shadow:0 2px 5px rgba(0,0,0,0.1); overflow:auto; }
-    .table-container h2 { margin-bottom:15px; }
-    table { width:100%; border-collapse:collapse; }
-    table th, table td { border:1px solid #ddd; padding:10px; text-align:left; }
-    table th { background:#f2f2f2; }
+    body { background:#f4f6f9; font-family: 'Segoe UI', sans-serif; }
+    .main-content { padding:20px; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+    .card-custom { border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
   </style>
 </head>
 <body>
 
-<?php include('navbar.php'); ?>
-
 <main class="main-content">
   <header class="topbar">
-    <h1>Feedback Respond</h1>
-    <div class="profile">Admin ▼</div>
+    <h1 class="h4 fw-bold text-primary">Student Feedback</h1>
+    <div class="profile fw-semibold">Welcome,  <?= ($role_type == 'student' || $role_type == 'faculty'  || $role_type == 'admin') 
+    ? $full_name 
+    : $father_name ?></div>
   </header>
 
-<section class="content">       
-    <!-- Form -->   
-    <div class="form-container">
-      <h2>Add Feedback</h2>
-      <form method="POST">
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
-        <input type="hidden" name="student_name"  value="<?php echo $student_name; ?>">
-        <input type="hidden" name="faculty_name"  value="<?php echo $full_name; ?>">
-        <input type="hidden" name="faculty_id"  value="<?php echo $employee_id; ?>">
-        <input type="hidden" name="role_type" value="<?php echo $role_type; ?>">
-        
-        <div    class="form-group">
-          <label for="address">Describe</label>
-          <textarea id="address" name="description" placeholder="Enter Your Feedback" rows="4"></textarea>
-        </div>
-        <button type="submit" name="submit" class="btn">Add +</button>
-      </form>
-    </div>
+  <section class="content">
+    <div class="card card-custom p-4 mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h5 text-secondary">Student List</h2>
+        <!-- Add Feedback Button -->
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFeedbackModal">
+          <i class="fas fa-plus"></i> Add Feedback
+        </button>
+      </div>
 
-    <!-- Table -->
-    <div class="table-container">
-      <h2>Feedback</h2>
-      <table>
-        <thead>
+      <!-- Feedback Table -->
+      <table class="table table-bordered table-striped table-hover align-middle">
+        <thead class="table-dark">
           <tr>
             <th>S.No.</th>
-            <th>Student Id</th>
+            <th>Student ID</th>
             <th>Student Name</th>
             <th>Feedback</th>
           </tr>
         </thead>
         <tbody>
           <?php 
-          $i=1;
-          $query = "SELECT * FROM feedback WHERE faculty_id='$employee_id' AND role_type='student'";
-          $result = pg_query($conn, $query);
-          while($res = pg_fetch_array($result)){
+          $i = $offset + 1;
+          while ($res = pg_fetch_assoc($feedback_result)) {
           ?>
           <tr>
             <td><?php echo $i++; ?></td>
@@ -112,9 +114,59 @@ if(isset($_POST['submit'])){
           <?php } ?>
         </tbody>
       </table>
+
+      <!-- Pagination -->
+      <nav>
+        <ul class="pagination justify-content-center">
+          <li class="page-item <?php if($page <= 1) echo 'disabled'; ?>">
+            <a class="page-link" href="?page=<?php echo $page-1; ?>">&laquo; Prev</a>
+          </li>
+          <?php for ($p = 1; $p <= $total_pages; $p++) { ?>
+            <li class="page-item <?php if($page == $p) echo 'active'; ?>">
+              <a class="page-link" href="?page=<?php echo $p; ?>"><?php echo $p; ?></a>
+            </li>
+          <?php } ?>
+          <li class="page-item <?php if($page >= $total_pages) echo 'disabled'; ?>">
+            <a class="page-link" href="?page=<?php echo $page+1; ?>">Next &raquo;</a>
+          </li>
+        </ul>
+      </nav>
+
     </div>
   </section>
 </main>
+
+<!-- Add Feedback Modal -->
+<div class="modal fade" id="addFeedbackModal" tabindex="-1" aria-labelledby="addFeedbackModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content card-custom">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addFeedbackModalLabel">Add Feedback</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="POST">
+        <div class="modal-body">
+          <input type="hidden" name="student_id" value="<?php echo $id; ?>">
+          <input type="hidden" name="student_name" value="<?php echo $student_name; ?>">
+          <input type="hidden" name="faculty_name" value="<?php echo $full_name; ?>">
+          <input type="hidden" name="faculty_id" value="<?php echo $employee_id; ?>">
+          <input type="hidden" name="role_type" value="<?php echo $role_type; ?>">
+
+          <div class="mb-3">
+            <label for="description" class="form-label fw-semibold">Feedback</label>
+            <textarea id="description" name="description" class="form-control" placeholder="Enter feedback" rows="4" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" name="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

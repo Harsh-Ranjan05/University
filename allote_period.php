@@ -94,7 +94,9 @@ if(isset($_POST['submit'])){
   <main class="main-content">
     <header class="topbar">
       <h1>Time Table Mangment</h1>
-      <div class="profile">Admin ▼</div>
+      <div class="profile"> <?= ($role_type == 'student' || $role_type == 'faculty'  || $role_type == 'admin') 
+    ? $full_name 
+    : $father_name ?></div>
     </header>
 
     <!-- ✅ Allotment Form -->

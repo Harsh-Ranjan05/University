@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
     if($role_type == 'admin' && $employee_id == 'admin' && $password == 'admin123'){
         $_SESSION['employee_id'] = 'admin';
         $_SESSION['role_type']   = 'admin';
-        $_SESSION['full_name'] = '';
+        $_SESSION['full_name'] = 'admin';
         $_SESSION['student_id']  = '';
         $_SESSION['department']  = '';
         $_SESSION['branch']      = '';
@@ -28,6 +28,13 @@ if(isset($_POST['submit'])){
         $_SESSION['pan_no']  = '';
         $_SESSION['joining_date'] = '';
         $_SESSION['qualification'] = '';
+        $_SESSION['qualification'] = '';
+        $_SESSION['certificate'] = '';
+        $_SESSION['experience_certificate'] = '';
+        $_SESSION['resume'] = $res['resume'];
+        $_SESSION['appointment_letter'] = '';
+         $_SESSION['caste_certificate'] = '';
+        $_SESSION['doc_10th_doc_12th'] = '';
         $_SESSION['bank_details'] = '';
         $_SESSION['father_name'] = '';
         $_SESSION['mother_name'] = '';
@@ -53,7 +60,7 @@ if(isset($_POST['submit'])){
         $query = "SELECT * FROM faculty 
                   WHERE employee_id='$employee_id' 
                   AND role_type='faculty' 
-                  AND status='2' 
+                  AND status='0'  OR status='1'
                   AND password='$password'";
         $result = pg_query($conn, $query);
         $total = pg_num_rows($result);
@@ -67,6 +74,12 @@ if(isset($_POST['submit'])){
             $_SESSION['pan_no']  = $res['pan_no'];
             $_SESSION['joining_date'] = $res['joining_date'];
             $_SESSION['qualification'] = $res['qualification'];
+            $_SESSION['certificate'] = $res['certificate'];
+            $_SESSION['experience_certificate'] = $res['experience_certificate'];
+            $_SESSION['resume'] = $res['resume'];
+            $_SESSION['appointment_letter'] = $res['appointment_letter'];
+            $_SESSION['caste_certificate'] = $res['caste_certificate'];
+            $_SESSION['doc_10th_doc_12th'] = $res['doc_10th_doc_12th'];
             $_SESSION['bank_details'] = $res['bank_details'];
             $_SESSION['father_name'] = $res['father_name'];
             $_SESSION['mother_name'] = $res['mother_name'];
@@ -105,20 +118,26 @@ if(isset($_POST['submit'])){
         $query = "SELECT * FROM students 
                   WHERE student_id='$student_id' 
                   AND role_type='student' 
-                  AND status='2' 
+                  AND status='1' OR status='0' 
                   AND password='$password'";
         $result = pg_query($conn, $query);
         $total = pg_num_rows($result);
 
         if($total > 0){
             $res = pg_fetch_assoc($result);
-             $_SESSION['student_id']  = $res['student_id'];
+            $_SESSION['student_id']  = $res['student_id'];
             $_SESSION['parent_id']   = $res['parent_id'];
             $_SESSION['photo'] = $res['photo'];
             $_SESSION['designation'] = $res['designation'];
             $_SESSION['pan_no']  = $res['pan_no'];
             $_SESSION['joining_date'] = $res['joining_date'];
             $_SESSION['qualification'] = $res['qualification'];
+            $_SESSION['certificate'] = $res['certificate'];
+            $_SESSION['experience_certificate'] = $res['experience_certificate'];
+            $_SESSION['resume'] = $res['resume'];
+            $_SESSION['appointment_letter'] = $res['appointment_letter'];
+            $_SESSION['caste_certificate'] = $res['caste_certificate'];
+            $_SESSION['doc_10th_doc_12th'] = $res['doc_10th_doc_12th'];
             $_SESSION['bank_details'] = $res['bank_details'];
             $_SESSION['father_name'] = $res['father_name'];
             $_SESSION['mother_name'] = $res['mother_name'];

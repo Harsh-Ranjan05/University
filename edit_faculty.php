@@ -31,7 +31,6 @@ if (isset($_GET['employee_id'])) {
         $resume_1            = $res['resume'];
         $experience_certificates_1 = $res['experience_certificates'];
         $bank_details_1      = $res['bank_details'];
-        $status_1            = $res['status'];
     } else {
         echo "<script>alert('Faculty not found'); window.location='faculty.php';</script>";
         exit;
@@ -116,270 +115,148 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University CRM - Faculty Dashboard</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', sans-serif;}
-    body { display: flex; min-height: 100vh; background:#f4f6f9; }
 
-    .content { display:flex; padding:10px; gap:5px; flex:1; }
-    .form-container {
-      flex:1; background:white; padding:20px;
-      border-radius:12px; box-shadow:0 2px 5px rgba(0,0,0,0.1);
-    }
-    .form-container h2 { margin-bottom:15px; }
-    .form-group { margin-bottom:15px; }
-    .form-group label { display:block; margin-bottom:6px; font-weight:600; }
-    .form-group input, .form-group select, .form-group textarea {
-      width:100%; padding:10px;
-      border:1px solid #ccc; border-radius:6px;
-    }
-    .btn {
-      background:#007bff; color:white;
-      padding:10px 15px; border:none;
-      border-radius:6px; cursor:pointer;
-    }
-    .btn:hover { background:#0056b3; }
-    .table-container {
-      flex:2; background:white; padding:10px;
-      border-radius:12px; box-shadow:0 2px 5px rgba(0,0,0,0.1);
-      overflow:auto;
-    }
-    .table-container h2 { margin-bottom:15px; }
-    table { width:100%; border-collapse:collapse; }
-    table th, table td { border:1px solid #ddd; padding:10px; text-align:left; }
-    table th { background:#f2f2f2; }
-    .btn-1{ background:green; color:white; padding:8px 12px; border:none; border-radius:6px; cursor:pointer; }
-  </style>
-</head>
 <body>
 
 <?php include('navbar.php'); ?>
 
-<main class="main-content">
-  <header class="topbar">
-    <h1>Faculty Management</h1>
-    <div class="profile">Admin ▼</div>
+<main class="container py-3">
+  <header class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4 text-primary fw-bold m-0">Edit Faculty</h1>
+    <a href="faculty.php" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left"></i> Back</a>
   </header>
 
-  <section class="content">
-   <div class="form-container">
-      <h2>Upadate Faculty</h2>
-      <form method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" value="<?php echo $name; ?>" placeholder="Enter full name">
+  <!-- Edit Form -->
+  <div class="card shadow-sm mb-4">
+    <h5 class="mb-3">Update Faculty</h5>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Full Name</label>
+          <input type="text" name="name" value="<?php echo $name; ?>" class="form-control" required>
         </div>
-        <div class="form-group">
-          <label for="name">Father Name</label>
-          <input type="text" id="name" name="father_name_1"  value="<?php echo $father_name_1; ?>" placeholder="Enter father name">
+        <div class="col-md-6">
+          <label class="form-label">Father Name</label>
+          <input type="text" name="father_name_1" value="<?php echo $father_name_1; ?>" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="name">Mother Name</label>
-          <input type="text" id="name" name="mother_name_1"  value="<?php echo $mother_name_1; ?>" placeholder="Enter mother name">
+        <div class="col-md-6">
+          <label class="form-label">Mother Name</label>
+          <input type="text" name="mother_name_1" value="<?php echo $mother_name_1; ?>" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="name">D.O.B</label>
-          <input type="date" id="name" name="dob_1"   value="<?php echo $dob_1; ?>">
+        <div class="col-md-6">
+          <label class="form-label">D.O.B</label>
+          <input type="date" name="dob_1" value="<?php echo $dob_1; ?>" class="form-control">
         </div>
-
-     <div class="form-group">
-  <label for="gender">Gender</label>
-  <select id="gender" name="gender_1" required>
-    <option value="">-- Select Gender --</option>
-    <option value="Male" <?php if(isset($gender) && $gender=="Male") echo "selected"; ?>>Male</option>
-    <option value="Female" <?php if(isset($gender) && $gender=="Female") echo "selected"; ?>>Female</option>
-    <option value="Other" <?php if(isset($gender) && $gender=="Other") echo "selected"; ?>>Other</option>
-  </select>
-</div>
-
-
-       <div class="form-group">
-  <label for="blood_group">Blood Group</label>
-  <select id="blood_group" name="blood_group_1" required>
-    <option value="">-- Select Blood Group --</option>
-    <option value="A+" <?php if(isset($blood_group) && $blood_group=="A+") echo "selected"; ?>>A+</option>
-    <option value="A-" <?php if(isset($blood_group) && $blood_group=="A-") echo "selected"; ?>>A-</option>
-    <option value="B+" <?php if(isset($blood_group) && $blood_group=="B+") echo "selected"; ?>>B+</option>
-    <option value="B-" <?php if(isset($blood_group) && $blood_group=="B-") echo "selected"; ?>>B-</option>
-    <option value="AB+" <?php if(isset($blood_group) && $blood_group=="AB+") echo "selected"; ?>>AB+</option>
-    <option value="AB-" <?php if(isset($blood_group) && $blood_group=="AB-") echo "selected"; ?>>AB-</option>
-    <option value="O+" <?php if(isset($blood_group) && $blood_group=="O+") echo "selected"; ?>>O+</option>
-    <option value="O-" <?php if(isset($blood_group) && $blood_group=="O-") echo "selected"; ?>>O-</option>
-  </select>
-</div>
-
-
-        <div class="form-group">
-          <label for="aadhar">Aadhar No.</label>
-          <input type="text" id="aadhar" name="aadhar_no_1" value="<?php echo $aadhar_no_1; ?>" placeholder="Enter aadhar no. ">
+        <div class="col-md-4">
+          <label class="form-label">Gender</label>
+          <select name="gender_1" class="form-select">
+            <option value="">--</option>
+            <option value="Male" <?php if($gender_1=="Male") echo "selected"; ?>>Male</option>
+            <option value="Female" <?php if($gender_1=="Female") echo "selected"; ?>>Female</option>
+            <option value="Other" <?php if($gender_1=="Other") echo "selected"; ?>>Other</option>
+          </select>
         </div>
-        <div class="form-group">
-          <label for="pan">PAN No.</label>
-          <input type="text" id="pan" name="pan_no_1"  value="<?php echo $pan_no_1; ?>" placeholder="Enter pan no. ">
+        <div class="col-md-4">
+          <label class="form-label">Blood Group</label>
+          <select name="blood_group_1" class="form-select">
+            <option value="">--</option>
+            <?php 
+              $groups=["A+","A-","B+","B-","AB+","AB-","O+","O-"];
+              foreach($groups as $g){
+                $sel = ($blood_group_1==$g) ? "selected":""; 
+                echo "<option value='$g' $sel>$g</option>";
+              }
+            ?>
+          </select>
         </div>
-        <div class="form-group">
-          <label for="photo">Upload Photo</label>
-          <input type="file" id="photo" name="photo_1" value="<?php echo $photo_1; ?>">
+        <div class="col-md-4">
+          <label class="form-label">Aadhar No.</label>
+          <input type="text" name="aadhar_no_1" value="<?php echo $aadhar_no_1; ?>" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="signature">Upload Signature</label>
-          <input type="file" id="signature" name="signature_1" value="<?php echo $signature_1; ?>">
+        <div class="col-md-6">
+          <label class="form-label">PAN No.</label>
+          <input type="text" name="pan_no_1" value="<?php echo $pan_no_1; ?>" class="form-control">
         </div>
-
-        <div class="form-group">
-          <label for="phone_no">Phone No.</label>
-          <input type="text" id="phone_no" name="mobile_no_1"  value="<?php echo $mobile_no_1; ?>"placeholder="Enter phone no.">
+        <div class="col-md-6">
+          <label class="form-label">Mobile</label>
+          <input type="text" name="mobile_no_1" value="<?php echo $mobile_no_1; ?>" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email_1"  value="<?php echo $email_1; ?>" placeholder="Enter email">
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input type="email" name="email_1" value="<?php echo $email_1; ?>" class="form-control">
         </div>
-       <div class="form-group">
-  <label for="permanent_address">Permanent Address</label>
-  <textarea id="permanent_address" name="permanent_address_1" placeholder="Enter permanent address" rows="4"><?php echo isset($permanent_address_1) ? $permanent_address_1 : ''; ?></textarea>
-</div>
-
-<div class="form-group">
-  <label for="current_address">Current Address</label>
-  <textarea id="current_address" name="current_address_1" placeholder="Enter current address" rows="4"><?php echo isset($current_address_1) ? $current_address_1 : ''; ?></textarea>
-</div>
-
-<div class="form-group">
-  <label for="dept">Department</label>
-  <select name="department_1">
-    <option value="">--select-department--</option>
-    <?php 
-    $current_department = $department_1 ?? ''; // Replace with actual current value
-    $result = pg_query($conn, "SELECT * FROM department");
-    while($row = pg_fetch_array($result)){ 
-        $selected = ($row['department'] == $current_department) ? 'selected' : '';
-    ?>
-      <option value="<?php echo $row['department']; ?>" <?php echo $selected; ?>>
-        <?php echo $row['department']; ?>
-      </option>
-    <?php } ?>
-  </select>
-</div>
-
-<div class="form-group">
-  <label for="des">Designation</label>
-  <select name="designation_1">
-    <option value="">--select-designation--</option>
-    <?php 
-    $current_designation = $designation_1 ?? ''; // Replace with actual current value
-    $result = pg_query($conn, "SELECT * FROM designation");
-    while($row = pg_fetch_array($result)){ 
-        $selected = ($row['designation'] == $current_designation) ? 'selected' : '';
-    ?>
-      <option value="<?php echo $row['designation']; ?>" <?php echo $selected; ?>>
-        <?php echo $row['designation']; ?>
-      </option>
-    <?php } ?>
-  </select>
-</div>
-
-
-<div class="form-group">
-  <label for="qualification">Select Qualification:</label>
-  <select name="qualification_1" id="qualification">
-    <optgroup label="Graduation (UG)">
-      <option value="BA" <?php if(isset($qualification) && $qualification=="BA") echo "selected"; ?>>BA - Bachelor of Arts</option>
-      <option value="BSc" <?php if(isset($qualification) && $qualification=="BSc") echo "selected"; ?>>BSc - Bachelor of Science</option>
-      <option value="BCom" <?php if(isset($qualification) && $qualification=="BCom") echo "selected"; ?>>BCom - Bachelor of Commerce</option>
-      <option value="BTech" <?php if(isset($qualification) && $qualification=="BTech") echo "selected"; ?>>B.Tech - Bachelor of Technology</option>
-      <option value="BE" <?php if(isset($qualification) && $qualification=="BE") echo "selected"; ?>>BE - Bachelor of Engineering</option>
-      <option value="BCA" <?php if(isset($qualification) && $qualification=="BCA") echo "selected"; ?>>BCA - Bachelor of Computer Applications</option>
-    </optgroup>
-
-    <optgroup label="Post-Graduation (PG)">
-      <option value="MA" <?php if(isset($qualification) && $qualification=="MA") echo "selected"; ?>>MA - Master of Arts</option>
-      <option value="MSc" <?php if(isset($qualification) && $qualification=="MSc") echo "selected"; ?>>MSc - Master of Science</option>
-      <option value="MCom" <?php if(isset($qualification) && $qualification=="MCom") echo "selected"; ?>>MCom - Master of Commerce</option>
-      <option value="MTech" <?php if(isset($qualification) && $qualification=="MTech") echo "selected"; ?>>M.Tech - Master of Technology</option>
-      <option value="ME" <?php if(isset($qualification) && $qualification=="ME") echo "selected"; ?>>ME - Master of Engineering</option>
-      <option value="MCA" <?php if(isset($qualification) && $qualification=="MCA") echo "selected"; ?>>MCA - Master of Computer Applications</option>
-      <option value="MBA" <?php if(isset($qualification) && $qualification=="MBA") echo "selected"; ?>>MBA - Master of Business Administration</option>
-    </optgroup>
-
-    <optgroup label="Doctoral (PhD)">
-      <option value="PhD" <?php if(isset($qualification) && $qualification=="PhD") echo "selected"; ?>>Ph.D. - Doctor of Philosophy</option>
-      <option value="MPhil" <?php if(isset($qualification) && $qualification=="MPhil") echo "selected"; ?>>M.Phil - Master of Philosophy</option>
-    </optgroup>
-
-    <optgroup label="Certifications / Eligibility">
-      <option value="NET" <?php if(isset($qualification) && $qualification=="NET") echo "selected"; ?>>UGC-NET Qualified</option>
-      <option value="SET" <?php if(isset($qualification) && $qualification=="SET") echo "selected"; ?>>SET Qualified</option>
-      <option value="GATE" <?php if(isset($qualification) && $qualification=="GATE") echo "selected"; ?>>GATE Qualified</option>
-      <option value="CSIR" <?php if(isset($qualification) && $qualification=="CSIR") echo "selected"; ?>>CSIR-NET Qualified</option>
-    </optgroup>
-  </select>
-</div>
-
-
-        <div class="form-group">
-          <label for="certificate">Upload Certificate</label>
-          <input type="file" id="certificate" value="<?php echo  $certificate_1; ?>" name="certificate_1">
+        <div class="col-12">
+          <label class="form-label">Permanent Address</label>
+          <textarea name="permanent_address_1" rows="2" class="form-control"><?php echo $permanent_address_1; ?></textarea>
         </div>
-        <div class="form-group">
-          <label for="appointment_letter">Upload Appointment Letter</label>
-          <input type="file" id="appointment_letter_1" value="<?php echo  $appointment_letter_1; ?>"name="appointment_letter">
+        <div class="col-12">
+          <label class="form-label">Current Address</label>
+          <textarea name="current_address_1" rows="2" class="form-control"><?php echo $current_address_1; ?></textarea>
         </div>
-        <div class="form-group">
-          <label for="resume">Upload Resume</label>
-          <input type="file" id="resume" name="resume_1" value="<?php echo  $resume_1; ?>">
+        <div class="col-md-6">
+          <label class="form-label">Photo</label>
+          <input type="file" name="photo_1" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="experience_certificate">Upload Experience Certificate</label>
-          <input type="file" id="experience_certificate_1" name="experience_certificate" value="<?php echo  $experience_certificate_1; ?>">
+        <div class="col-md-6">
+          <label class="form-label">Signature</label>
+          <input type="file" name="signature_1" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="bank_details">Enter Bank Name & A/C No:</label>
-          <input type="text" id="bank_details" name="bank_details_1" value="<?php echo  $bank_details_1; ?>">
+        <div class="col-md-6">
+          <label class="form-label">Department</label>
+          <select name="department_1" class="form-select">
+            <option value="">--select--</option>
+            <?php 
+              $result = pg_query($conn, "SELECT * FROM department");
+              while($row = pg_fetch_assoc($result)){
+                $sel = ($row['department']==$department_1)?"selected":"";
+                echo "<option value='{$row['department']}' $sel>{$row['department']}</option>";
+              }
+            ?>
+          </select>
         </div>
-
-        <button type="submit" name="submit" class="btn">Update</button>
-      </form>
-    </div>
-
-    <!-- Table -->
-    <div class="table-container">
-      <h2>Faculty List</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>S.No.</th>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Designation</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php 
-          $i=1;
-          $query="SELECT * FROM faculty";
-          $result = pg_query($conn, $query);
-          while($res=pg_fetch_array($result)){
-          ?>
-          <tr>
-            <td><?php echo $i++; ?></td>
-            <td><?php echo $res['full_name']; ?></td>
-            <td><?php echo $res['department']; ?></td>
-            <td><?php echo $res['designation']; ?></td>
-            <td> <a href="view_faculty.php?employee_id=<?php echo urlencode($res['employee_id']); ?>">
-  <button class="btn-1">View</button>
-</a></td>
-          </tr>
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
-  </section>
+        <div class="col-md-6">
+          <label class="form-label">Designation</label>
+          <select name="designation_1" class="form-select">
+            <option value="">--select--</option>
+            <?php 
+              $result = pg_query($conn, "SELECT * FROM designation");
+              while($row = pg_fetch_assoc($result)){
+                $sel = ($row['designation']==$designation_1)?"selected":"";
+                echo "<option value='{$row['designation']}' $sel>{$row['designation']}</option>";
+              }
+            ?>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Qualification</label>
+          <input type="text" name="qualification_1" value="<?php echo $qualification_1; ?>" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Bank Details</label>
+          <input type="text" name="bank_details_1" value="<?php echo $bank_details_1; ?>" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Certificate</label>
+          <input type="file" name="certificate_1" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Appointment Letter</label>
+          <input type="file" name="appointment_letter" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Resume</label>
+          <input type="file" name="resume_1" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Experience Certificates</label>
+          <input type="file" name="experience_certificate" class="form-control">
+        </div>
+      </div>
+      <div class="mt-3">
+        <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+      </div>
+    </form>
+  </div>
 </main>
 </body>
-</html>
+

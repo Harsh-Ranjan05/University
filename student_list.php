@@ -1,158 +1,118 @@
 <?php 
 include('db.php');
+
+$limit = 2; // Feedbacks per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page - 1) * $limit;
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University CRM - Class Allotment</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-    body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
-    .table-container { padding:20px; overflow-x:auto; width:100%; }
-    table {
-      width:100%;
-      border-collapse:collapse;
-      background:#fff;
-      border-radius:8px;
-      overflow:hidden;
-      box-shadow:0 2px 5px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding:12px 15px;
-      text-align:left;
-      border-bottom:1px solid #eee;
-    }
-    th { background:#f8f9fc; }
-    tr:hover { background:#f1f1f1; }
-    .btn-assign {
-      padding:6px 12px;
-      background:#007bff;
-      color:white;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      font-size:14px;
-    }
-    .btn-assign:hover { background:#0056b3; }
-    .btn {
-      padding:6px 12px;
-      background:green;
-      color:white;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      font-size:14px;  
-      text-decoration:none;
-    }
-     .btn-1 {
-      padding:6px 12px;
-      background:red;
-      color:white;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      font-size:14px;  
-      text-decoration:none;
-    }
-  </style>
-</head>
+
 <body>
-  <?php include('navbar.php'); ?>
-  <main class="main-content">
-    <header class="topbar">
-      <h1>Student </h1>
-      <div class="profile">Admin ▼</div>
-    </header>
+<?php include('navbar.php'); ?>
+<main class="container py-4">
 
-    <!-- Allotment Form -->
-    <form action="" method="get">
-      <section class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Student</th>
-              <th>Semester</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-               <td>
-<select name="student_id" required>
-    <option value="">--select-student--</option>
-    <?php 
-    $student_result = pg_query($conn, "SELECT * FROM students");
-    while($f = pg_fetch_array($student_result)) { ?>
-      <option value="<?php echo $f['student_id']; ?>">
-        <?php echo $f['full_name'] . " (" . $f['student_id'] . ") "; ?>
-      </option>
-    <?php } ?>
-</select>
+ <header class="topbar d-flex justify-content-between mb-3">
+    <h1 class="h4 fw-bold text-primary">Students Feedback</h1>
+    <div class="profile fw-semibold">Welcome, <?= ($role_type == 'student' || $role_type == 'faculty'  || $role_type == 'admin') 
+    ? $full_name 
+    : $father_name ?>
+</div>
+  </header>
 
-</td> 
- <td>
-<select name="program" required>
-    <option value="">--select-program--</option>
-    <?php 
-    $student_result = pg_query($conn, "SELECT * FROM students");
-    while($f = pg_fetch_array($student_result)) { ?>
-      <option value="<?php echo $f['program']; ?>">
-        <?php echo $f['program'] . ".(" . $f['semester'] . ").(" .$f['batch'].") "; ?>
-      </option>
-    <?php } ?>
-</select>
-
-</td> 
-<td><button name="fetch" type="submit" class="btn-assign">Fetch</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </form>
-
-    <!-- Attendance List -->
-    <form method="post">
-    <section class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Student Id</th>
-            <th>Full Name</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
+  <div class="card-custom mb-4">
+  <form action="" method="get" class="row g-3">
+    <div class="col-md-5">
+      <label class="form-label">Select Student</label>
+      <select name="full_name_1" class="form-select" required>
+        <option value="">--Select Student--</option>
         <?php 
-        if(isset($_GET['student_id']) && isset($_GET['program'])) {   
-            $id = $_GET['student_id'];
-            $program     = $_GET['program'];
-        
-            $query = "SELECT * FROM students
-                      WHERE student_id='$id' 
-                      AND program='$program'";
-            $result = pg_query($conn, $query);
+        $students = pg_query($conn, "SELECT * FROM students");
+        while($f = pg_fetch_array($students)) { ?>
+          <option value="<?php echo $f['full_name']; ?>">
+            <?php echo $f['full_name'] . " (" . $f['student_id'] . ")"; ?>
+          </option>
+        <?php } ?>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Select Class</label>
+      <select name="class_code_1" class="form-select" required>
+        <option value="">--Select Class--</option>
+        <?php 
+        $classes = pg_query($conn, "SELECT DISTINCT class_code, program, section, semester FROM students");
+        while($f = pg_fetch_array($classes)) { ?>
+          <option value="<?php echo $f['class_code']; ?>">
+            <?php echo $f['program'] . " (" . $f['section'] . ")"." (" . $f['semester'] . ")"; ?>
+          </option>
+        <?php } ?>
+      </select>
+    </div>
+    <div class="col-md-3 align-self-end">
+      <button name="fetch" type="submit" class="btn-assign w-100">Fetch</button>
+    </div>
+  </form>
+</div>
 
-            while($res = pg_fetch_array($result)) { ?>
+<?php if(isset($_GET['full_name_1']) && isset($_GET['class_code_1'])) {   
+    $full_name_1 = $_GET['full_name_1'];
+    $class_code_1 = $_GET['class_code_1'];
+
+    $query = "SELECT * FROM students
+              WHERE full_name='$full_name_1' 
+              AND class_code='$class_code_1'";
+    $result = pg_query($conn, $query);
+
+    if(pg_num_rows($result) > 0){ ?>
+      <div class="card-custom">
+        <h5 class="mb-3">Student Info</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead class="table-dark">
+              <tr>
+                <th>Student Id</th>
+                <th>Full Name</th>
+                <th>Program</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php while($res = pg_fetch_array($result)) { ?>
               <tr>
                 <td><?php echo $res['student_id']; ?></td>
                 <td><?php echo $res['full_name']; ?></td>
-                 <td>  <a class="btn" href="faculty_feedback.php?student_id=<?php echo urlencode($res['student_id']); ?>">
-    Feedback
-  </a></td>
-              
+                <td><?php echo $res['program']; ?></td>
+                <td>
+                <a class="btn btn-success btn-sm" href="faculty_feedback.php?student_id=<?php echo urlencode($res['student_id']); ?>">Feedback</a>
+
+                </td>
               </tr>
-            <?php 
-            } 
-        } 
-        ?>
-        </tbody>
-      </table>
-       <div class="table-container">
-      <table>
-        <h1>Student Feedback</h1>
-        <thead>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <?php } else {
+      echo "<div class='alert alert-warning'>No students found for this class.</div>";
+    }
+} ?>
+
+  <!-- Student Feedback Table -->
+  <div class="card-custom">
+    <h5 class="mb-3">Feedback from Students</h5>
+    <div class="table-responsive">
+      <?php
+      // Total records
+      $totalQuery = "SELECT COUNT(*) AS total FROM feedback WHERE faculty_id='$employee_id' AND role_type='student'";
+      $totalResult = pg_query($conn, $totalQuery);
+      $totalRow = pg_fetch_assoc($totalResult);
+      $totalRecords = $totalRow['total'];
+      $totalPages = ceil($totalRecords / $limit);
+
+      // Fetch feedback with limit and offset
+      $query = "SELECT * FROM feedback WHERE faculty_id='$employee_id' AND role_type='student' ORDER BY id DESC LIMIT $limit OFFSET $start";
+      $result = pg_query($conn, $query);
+      ?>
+      <table class="table table-bordered">
+        <thead class="table-dark">
           <tr>
             <th>S.No.</th>
             <th>Student</th>
@@ -161,26 +121,47 @@ include('db.php');
           </tr>
         </thead>
         <tbody>
-          <?php 
-          $i=1;
-          $query = "SELECT * FROM feedback WHERE faculty_id='$employee_id' AND role_type='student'";
-          $result = pg_query($conn, $query);
-          while($res = pg_fetch_array($result)){
-          ?>
-          <tr>
-            <td><?php echo $i++; ?></td>
-            <td><?php echo $res['student_name']; ?></td>
-            <td><?php echo $res['description']; ?></td>
-            <td>  <a class="btn" href="faculty_feedback.php?student_id=<?php echo urlencode($res['student_id']); ?>">
-    Reply
-  </a></td>
-          </tr>
-          <?php } ?>
+        <?php 
+        if(pg_num_rows($result) > 0){
+          $i = $start + 1;
+          while($res = pg_fetch_assoc($result)){ ?>
+            <tr>
+              <td><?php echo $i++; ?></td>
+              <td><?php echo htmlspecialchars($res['student_name']); ?></td>
+              <td><?php echo htmlspecialchars($res['description']); ?></td>
+              <td>
+                <a class="btn btn-primary btn-sm" href="faculty_feedback.php?student_id=<?php echo urlencode($res['student_id']); ?>">Reply</a>
+              </td>
+            </tr>
+          <?php } 
+        } else {
+          echo "<tr><td colspan='4' class='text-center text-muted'>No feedback found</td></tr>";
+        }
+        ?>
         </tbody>
       </table>
+
+      <!-- Pagination -->
+      <?php if($totalRecords > 0){ ?>
+      <nav>
+        <ul class="pagination justify-content-center mt-3">
+          <li class="page-item <?php if($page <= 1){ echo 'disabled'; } ?>">
+            <a class="page-link" href="?page=<?php echo $page-1; ?>">Previous</a>
+          </li>
+          <?php for($i=1; $i<=$totalPages; $i++){ ?>
+          <li class="page-item <?php if($page == $i){ echo 'active'; } ?>">
+            <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+          </li>
+          <?php } ?>
+          <li class="page-item <?php if($page >= $totalPages){ echo 'disabled'; } ?>">
+            <a class="page-link" href="?page=<?php echo $page+1; ?>">Next</a>
+          </li>
+        </ul>
+      </nav>
+      <?php } ?>
     </div>
-    </section>
-    </form>
-  </main>
+  </div>
+
+</main>
 </body>
-</html>
+

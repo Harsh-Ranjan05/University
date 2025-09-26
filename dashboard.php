@@ -1,92 +1,22 @@
 <?php include('db.php'); ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University CRM - Dashboard</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', sans-serif;}
-    body { display: flex; min-height: 100vh; background:#f4f6f9; }
 
-    /* Cards */
-    .cards {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-      gap:20px;
-      padding:20px;
-    }
-    .card {
-      background:white;
-      padding:20px;
-      border-radius:10px;
-      box-shadow:0 2px 5px rgba(0,0,0,0.1);
-      text-align:center;
-    }
-    .card h3 { font-size:18px; margin-bottom:8px; color:#333; }
-    .card p { font-size:22px; font-weight:bold; color:#007bff; }
-
-    /* Notice Section */
-    .notice-section {
-      margin:20px;
-      background:#fff;
-      border-radius:10px;
-      box-shadow:0 2px 5px rgba(0,0,0,0.1);
-      padding:20px;
-    }
-    .notice-section h2 {
-      font-size:20px;
-      margin-bottom:10px;
-      color:#007bff;
-      border-bottom:2px solid #f1f1f1;
-      padding-bottom:8px;
-    }
-    .notice-list {
-      list-style:none;
-    }
-    .notice-list li {
-      padding:10px;
-      border-bottom:1px solid #eee;
-      font-size:15px;
-      color:#333;
-    }
-    .notice-list li:last-child { border-bottom:none; }
-    .notice-date {
-      font-size:13px;
-      color:#888;
-      margin-left:5px;
-    }
-    .notice-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* two equal halves */
-  gap: 20px;
-}
-.notice-half h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #007bff;
-  border-bottom: 2px solid #f1f1f1;
-  padding-bottom: 6px;
-}
-#day{
-  color:red;
-}
-  </style>
-</head>
 <body>
 
   <?php include('navbar.php'); ?>
   <!-- Main Content -->
   <main class="main-content">
-    <header class="topbar">
-      <h1>Dashboard</h1>
-      <div class="profile">Welcome, <?php echo $role_type; ?></div>
-    </header>
+     <header class="topbar d-flex justify-content-between mb-3">
+    <h1 class="h4 fw-bold text-primary">Dashboard</h1>
+    <div class="profile fw-semibold">Welcome, <?= ($role_type == 'student' || $role_type == 'faculty'  || $role_type == 'admin') 
+    ? $full_name 
+    : $father_name ?>
+</div>
+  </header>
 
     <!-- Cards -->
   <?php if($role_type=='admin'){?>
-    <section class="cards">
-      <div class="card">
+    <section class="cards_1">
+      <div class="card_1">
         <?php 
         $query="SELECT*FROM students";
         $result=pg_query($conn,$query);
@@ -95,7 +25,7 @@
         <h3>Total Students</h3>
         <p><?php echo $total; ?></p>
       </div>
-      <div class="card">
+      <div class="card_1">
         <?php 
         $query="SELECT*FROM faculty";
         $result=pg_query($conn,$query);
@@ -104,7 +34,7 @@
         <h3>Total Faculty</h3>
         <p><?php echo $total; ?></p>
       </div>
-      <div class="card">
+      <div class="card_1">
         <?php 
         $query="SELECT*FROM contact_us";
         $result=pg_query($conn,$query);
@@ -115,8 +45,8 @@
       </div>
     </section>
     <?php } elseif($role_type=='faculty'){?>
-       <section class="cards">
-      <div class="card">
+       <section class="cards_1">
+      <div class="card_1">
         <?php 
         $query="SELECT*FROM allot WHERE employee_id='$employee_id'";
         $result=pg_query($conn,$query);
@@ -125,7 +55,7 @@
         <h3>Total Class Allotted</h3>
         <p><?php echo $total; ?></p>
       </div>
-      <div class="card">
+      <div class="card_1">
         <?php 
         $query="SELECT*FROM feedback WHERE role_type='student' AND faculty_id='$employee_id'";
         $result=pg_query($conn,$query);
@@ -134,31 +64,58 @@
         <h3>Total Feedback Today</h3>
         <p><?php echo $total; ?></p>
       </div>
-      <div class="card">
+      <div class="card_1">
         <h3>Upcoming Holiday </h3>
-       <?php 
-$query="SELECT * FROM notice WHERE status='1' AND notice_type='Festival Holiday' LIMIT 1";
-$result=pg_query($conn,$query);
-while($res=pg_fetch_array($result)){
+    <?php 
+$query = "SELECT * FROM notice WHERE status='1' AND notice_type='Festival Holiday' LIMIT 1";
+$result = pg_query($conn, $query);
+
+if (pg_num_rows($result) > 0) {
+    while ($res = pg_fetch_array($result)) {
+        ?>
+        <p id="day_1"><?php echo htmlspecialchars($res['title']); ?></p>
+        <p><?php echo htmlspecialchars($res['description']); ?></p>
+        <?php
+    }
+} else {
+    ?>
+    <p>No holiday Upcoming</p>
+    <?php
+}
 ?>
-    <p id="day"><?php echo $res['title']; ?></p>
-    <p><?php echo $res['description']; ?></p>
-<?php }  ?>
+
 
       </div>
     </section>
       <?php }elseif($role_type=='student'){?>
-         <section class="cards">
-      <div class="card">
-        <?php 
-        $query="SELECT*FROM allot WHERE employee_id='$employee_id'";
-        $result=pg_query($conn,$query);
-        $total = pg_num_rows($result);
-        ?>
-        <h3>Total Class Allotted</h3>
-        <p><?php echo $total; ?></p>
+         <section class="cards_1">
+      <div class="card_1">
+      <?php
+// Total days student was present
+$query_present = "SELECT * FROM attendance WHERE student_id='$student_id' AND day='Present'";
+$result_present = pg_query($conn, $query_present);
+$days_present = pg_num_rows($result_present);
+
+// Total days recorded for this student
+$query_total = "SELECT * FROM attendance WHERE student_id='$student_id'";
+$result_total = pg_query($conn, $query_total);
+$total_days = pg_num_rows($result_total);
+
+// Calculate percentage
+if ($total_days > 0) {
+    $percentage = ($days_present / $total_days) * 100;
+} else {
+    $percentage = 0;
+}
+?>
+
+
+
+<h3>Total Attendance </h3>
+<p><?php echo number_format($percentage, 2); ?>%</p>
+
       </div>
-      <div class="card">
+      <div class="card_1">
         <?php 
         $query="SELECT*FROM feedback WHERE role_type='faculty' AND student_id='$student_id'";
         $result=pg_query($conn,$query);
@@ -167,53 +124,186 @@ while($res=pg_fetch_array($result)){
         <h3>Total Feedback Today</h3>
         <p><?php echo $total; ?></p>
       </div>
-      <div class="card">
+      <div class="card_1">
         <h3>Upcoming Holiday </h3>
-       <?php 
-$query="SELECT * FROM notice WHERE status='1' AND notice_type='Festival Holiday'";
-$result=pg_query($conn,$query);
-while($res=pg_fetch_array($result)){
-?>
-    <p id="day"><?php echo $res['title']; ?></p>
-    <p><?php echo $res['description']; ?></p>
-<?php }  ?>
+     <?php 
+$query = "SELECT * FROM notice WHERE status='1' AND notice_type='Festival Holiday' LIMIT 1";
+$result = pg_query($conn, $query);
 
+if (pg_num_rows($result) > 0) {
+    while ($res = pg_fetch_array($result)) {
+        ?>
+        <p id="day_1"><?php echo htmlspecialchars($res['title']); ?></p>
+        <p><?php echo htmlspecialchars($res['description']); ?></p>
+        <?php
+    }
+} else {
+    ?>
+    <p>No holiday Upcoming.</p>
+    <?php
+}
+?>
       </div>
     </section>
-        <?php } ?>
+        <?php }else{ ?>
+          <section class="cards_1">
+      <div class="card_1">
+      <?php
+// Total days student was present
+$query_present = "SELECT * FROM attendance WHERE student_id='$student_id' AND day='Present'";
+$result_present = pg_query($conn, $query_present);
+$days_present = pg_num_rows($result_present);
+
+// Total days recorded for this student
+$query_total = "SELECT * FROM attendance WHERE student_id='$student_id'";
+$result_total = pg_query($conn, $query_total);
+$total_days = pg_num_rows($result_total);
+
+// Calculate percentage
+if ($total_days > 0) {
+    $percentage = ($days_present / $total_days) * 100;
+} else {
+    $percentage = 0;
+}
+?>
+
+
+
+<h3>Child Attendance </h3>
+<p><?php echo number_format($percentage, 2); ?>%</p>
+
+      </div>
+      <div class="card_1">
+        <?php 
+        $query="SELECT*FROM feedback WHERE role_type='faculty' AND student_id='$student_id'";
+        $result=pg_query($conn,$query);
+        $total = pg_num_rows($result);
+        ?>
+        <h3>Total Feedback Today</h3>
+        <p><?php echo $total; ?></p>
+      </div>
+      <div class="card_1">
+        <h3>Upcoming Holiday </h3>
+     <?php 
+$query = "SELECT * FROM notice WHERE status='1' AND notice_type='Festival Holiday' LIMIT 1";
+$result = pg_query($conn, $query);
+
+if (pg_num_rows($result) > 0) {
+    while ($res = pg_fetch_array($result)) {
+        ?>
+        <p id="day_1"><?php echo htmlspecialchars($res['title']); ?></p>
+        <p><?php echo htmlspecialchars($res['description']); ?></p>
+        <?php
+    }
+} else {
+    ?>
+    <p>No holiday Upcoming.</p>
+    <?php
+}
+?>
+      </div>
+    </section>
+          <?php }?>
 
     <!-- Notice Section -->
     <!-- Notice Section -->
-<section class="notice-section">
+<section class="notice-section_1">
   <div class="notice-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
     
     <!-- Left Half: Latest Notices -->
-    <div class="notice-half">
+    <div class="notice-half_1">
       <h2>📢 Latest Notices</h2>
-      <ul class="notice-list">
-        <?php 
-        include('db.php');
-        $query="SELECT*FROM notice WHERE notice_type='Academic Notices' OR notice_type='Examination Notices' OR notice_type='Administration Notices' OR notice_type='Job / Placement / Internship Notices'";
-        $result=pg_query($conn,$query);
-        while($res=pg_fetch_array($result)){
+ <ul class="notice-list_1">
+<?php 
+include('db.php');
+
+$query = "
+   SELECT * FROM notice
+WHERE notice_type='Academic Notices'
+   OR notice_type='Examination Notices'
+   OR notice_type='Administration Notices'
+   OR notice_type='Job / Placement / Internship Notices'
+   OR notice_type='Event/Program Notices'
+   OR notice_type='Other Notice Types'
+   AND created_on >= NOW() - INTERVAL '20 days'
+ORDER BY created_on DESC;
+
+";
+
+$result = pg_query($conn, $query);
+
+if (pg_num_rows($result) > 0) {
+    while($res = pg_fetch_array($result)){
         ?>
-        <li><?php echo $res['description']; ?> </li>
-       <?php } ?>
-      </ul>
+        <li>
+            <?php echo htmlspecialchars($res['description']); ?>
+          <?php  if($role_type=='student'){?>
+              <?php if (!empty($res['link'])) { ?>
+                <a href="<?php echo htmlspecialchars($res['link']); ?>" target="_blank" class="btn btn-success btn-sm ms-2">Apply</a>
+            <?php } ?>
+            <?php }else{?>
+              <button type="button" class="btn btn-warning btn-sm">
+            Only For Students
+        </button>
+              <?php } ?>
+        </li>
+        <?php
+    }
+} else {
+    ?>
+    <li>No latest notice available.</li>
+    <?php
+}
+?>
+</ul>
+
+
+
     </div>
 
     <!-- Right Half: Upcoming Events -->
-    <div class="notice-half">
+    <div class="notice-half_1">
       <h2>🎉 Upcoming Events</h2>
-      <ul class="notice-list">
-              <?php 
-        include('db.php');
-        $query="SELECT*FROM notice WHERE  notice_type='Event/Program Notices' LIMIT 1";
-        $result=pg_query($conn,$query);
-        while($res=pg_fetch_array($result)){
+     <ul class="notice-list_1">
+<?php 
+include('db.php');
+
+// Fetch the latest Event/Program notice from last 20 days
+$query = "
+    SELECT * FROM notice
+    WHERE notice_type = 'Event/Program Notices'
+      AND created_on >= NOW() - INTERVAL '20 days'
+    ORDER BY created_on DESC
+    LIMIT 1
+";
+
+$result = pg_query($conn, $query);
+
+if (pg_num_rows($result) > 0) {
+    while($res = pg_fetch_array($result)){
         ?>
-        <li><?php echo $res['description']; ?> </li>
-       <?php } ?>
+        <li>
+            <?php echo htmlspecialchars($res['description']); ?>
+           <?php  if($role_type=='student'){?>
+              <?php if (!empty($res['link'])) { ?>
+                <a href="<?php echo htmlspecialchars($res['link']); ?>" target="_blank" class="btn btn-success btn-sm ms-2">Apply</a>
+            <?php } ?>
+            <?php }else{?>
+              <button type="button" class="btn btn-warning btn-sm">
+            Only For Students
+        </button>
+              <?php } ?>
+        </li>
+        <?php
+    }
+} else {
+    ?>
+    <li>No latest event/program notice available.</li>
+    <?php
+}
+?>
+</ul>
+
     </div>
 
   </div>
@@ -222,4 +312,4 @@ while($res=pg_fetch_array($result)){
   </main>
 
 </body>
-</html>
+

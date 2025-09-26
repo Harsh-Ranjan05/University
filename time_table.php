@@ -21,72 +21,9 @@ while($res=pg_fetch_array($result)){
 }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edit Allotment</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
-#h2{
-        text-align:center;
-        margin-bottom:25px;
-        font-size:26px;
-        color:#333;
-        margin:5px;
-    }
-    .timetable {
-      display:grid;
-      grid-template-columns: 80px repeat(8, 1fr); /* Day + 8 periods */
-      gap:4px;
-      background:#fff;
-      padding:5px;
-      border-radius:10px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.15);
-      margin:10px;
-    }
-    .box {
-      border:1px solid #ddd;
-      padding:5px;
-      text-align:center;
-      background:#fafafa;
-      border-radius:6px;
-      font-size:14px;
-      min-height:70px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-    .header {
-      font-weight:bold;
-      background:#007bff;
-      color:white;
-      font-size:15px;
-    }
-    .day {
-      font-weight:bold;
-      background:#f8f9fc;
-      color:#333;
-    }
-    .subject {
-      font-size:14px;
-      font-weight:bold;
-      color:#222;
-    }
-    .room {
-      font-size:12px;
-      color:#555;
-    }
-    .faculty {
-      font-size:11px;
-      color:#888;
-    }
-</style>
-</head>
+
 <body>
+  <div class="body_container">
 <?php include('navbar.php'); ?>
 <main class="main-content">
 <header class="topbar">
@@ -648,9 +585,8 @@ body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
 
   </div>
 </div>
-  
+        </div>
 </section>
 </form>
 </main>
 </body>
-</html>

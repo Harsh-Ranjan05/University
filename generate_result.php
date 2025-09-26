@@ -5,12 +5,14 @@ if(isset($_GET['student_id'])){
    $student_id = $_GET['student_id'];
    $query = "SELECT * FROM students WHERE student_id='$student_id'";
    $result=pg_query($conn,$query);
-  if($result){
+   if($result){
      while($res=pg_fetch_array($result)){
-     $student_id = $res['student_id'];
-     $semester   = $res['semester'];  
+       $full_name_1 = $res['full_name'];
+       $semester_1   = $res['semester'];  
+       $program_1   = $res['program'];  
+       $batch_1   = $res['batch'];  
+     }
    }
-  }
 }
 
 if(isset($_POST['submit'])){
@@ -27,9 +29,9 @@ if(isset($_POST['submit'])){
 
   $result=pg_query($conn, $query);
   if($result){
-    echo "<script>alert('Marks Added Sucessfully ..'); window.location='generate_result.php';</script>";
+    echo "<script>alert('Marks Added Sucessfully ..'); window.location='generate_result.php?student_id=$student_id';</script>";
   }else{
-    echo "<script>alert('Failed To Added Marks ..'); window.location='enroll_student.php';</script>";
+    echo "<script>alert('Failed To Added Marks ..'); window.location='generate_result.php?student_id=$student_id';</script>";
   }
 }
 ?>
@@ -38,125 +40,69 @@ if(isset($_POST['submit'])){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>University CRM - Class Allotment</title>
+  <title>University CRM - Generate Result</title>
+
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; }
-    body { display:flex; min-height:100vh; background:#f4f6f9; color:#333; }
-    .table-container { padding:20px; overflow-x:auto; width:100%; }
-    table {
-      width:100%;
-      border-collapse:collapse;
-      background:#fff;
-      border-radius:8px;
-      overflow:hidden;
-      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+    body {
+      background: #f4f6f9;
+      font-family: 'Segoe UI', sans-serif;
     }
-    th, td {
-      padding:12px 15px;
-      text-align:left;
-      border-bottom:1px solid #eee;
+    .main-content { padding: 20px; }
+    .card-custom {
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    th { background:#f8f9fc; }
-    tr:hover { background:#f1f1f1; }
-    .btn-assign {
-      padding:6px 12px;
-      background:#007bff;
-      color:white;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      font-size:14px;
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
     }
-     .btn-assign-1 {
-      padding:6px 12px;
-      background:green;
-      color:white;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      font-size:14px;
-    }
-    .btn-assign:hover { background:#0056b3; }
   </style>
 </head>
 <body>
   <?php include('navbar.php'); ?>
+
   <main class="main-content">
-    <header class="topbar">
-      <h1>Examination - Management</h1>
-      <div class="profile">Admin ▼</div>
-    </header>
+    <!-- Header -->
+    <header class="topbar d-flex justify-content-between mb-3">
+    <h1 class="h4 fw-bold text-primary">Add Marksheet Records</h1>
+    <div class="profile fw-semibold">Welcome, <?php echo $full_name; ?></div>
+  </header>
 
-    <!-- Allotment Form -->
-    <form action="" method="post">
-      <input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
-      <input type="hidden" name="semester" value="<?php echo $semester; ?>">
+    <!-- Student Details -->
+    <div class="card card-custom p-4 mb-4">
+      <h2 class="h5 text-secondary"><i class="fas fa-user-graduate"></i> Student Information</h2>
+      <div class="row g-3 mt-2">
+        <div class="col-md-3">
+          <span class="fw-semibold">Full Name:</span> <?php echo isset($full_name_1) ? $full_name_1 : 'N/A'; ?>
+        </div>
+        <div class="col-md-2">
+          <span class="fw-semibold">Semester:</span> <?php echo isset($semester_1) ? $semester_1 : 'N/A'; ?>
+        </div>
+        <div class="col-md-4">
+          <span class="fw-semibold">Program:</span> <?php echo isset($program_1) ? $program_1 : 'N/A'; ?>
+        </div>
+        <div class="col-md-2">
+          <span class="fw-semibold">Batch:</span> <?php echo isset($batch_1) ? $batch_1 : 'N/A'; ?>
+        </div>
+    </div>
 
-      <section class="table-container">
-        <table>
-          <thead>
+    <!-- Add Marks Button -->
+    <div class="mb-3">
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMarksModal">
+        <i class="fas fa-plus-circle"></i> Add Marks
+      </button>
+    </div>
+
+    <!-- Marks Table -->
+    <div class="card card-custom p-4">
+      <h2 class="h5 mb-3 text-secondary"><i class="fas fa-list"></i> Marks List</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-dark">
             <tr>
-              <th>Subject Code </th>
-              <th>Subject Name</th>
-              <th>Exam Type</th>
-              <th>Max Marks</th>
-              <th>Marks Obtained</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <select name="subject_code" required>
-                  <option value="">--select-subject-code--</option>
-                  <?php 
-                  $result = pg_query($conn, "SELECT * FROM subject");
-                  while($row = pg_fetch_array($result)){ ?>
-                    <option value="<?php echo $row['subject_code']; ?>">
-                      <?php echo $row['subject_code']; ?>
-                    </option>
-                  <?php } ?>
-                </select>
-              </td>
-              <td>
-                <select name="subject_name" required>
-                  <option value="">--select-subject-name--</option>
-                  <?php 
-                  $result = pg_query($conn, "SELECT * FROM subject");
-                  while($row = pg_fetch_array($result)){ ?>
-                    <option value="<?php echo $row['subject_name']; ?>">
-                      <?php echo $row['subject_name']; ?>
-                    </option>
-                  <?php } ?>
-                </select>
-              </td>
-              <td>
-                <select name="exam_type" required>
-                  <option value="">--select-exam-type--</option>
-                  <option value="Final">Final</option>
-                  <option value="Midterm">Midterm</option>
-                  <option value="Practical">Practical</option>
-                </select>
-              </td>
-              <td>
-                <input type="text" name="max_marks" required>
-              </td>
-              <td>
-                <input type="text" name="marks_obtained" required>
-              </td>
-              <td>
-                <button name="submit" type="submit" class="btn-assign">Add</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-    </form>
-    <section class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Subject Code </th>
+              <th>Subject Code</th>
               <th>Subject Name</th>
               <th>Exam Type</th>
               <th>Semester</th>
@@ -164,29 +110,102 @@ if(isset($_POST['submit'])){
             </tr>
           </thead>
           <tbody>
-           <?php 
-if(isset($_GET['student_id'])){
-  $student_id = $_GET['student_id'];
-  $query="SELECT * FROM store_marks WHERE student_id='$student_id'";
-  $result = pg_query($conn, $query); 
-  while($res=pg_fetch_array($result)){ 
-?>
-<tr>
-  <td><?php echo $res['subject_code']; ?></td>
-  <td><?php echo $res['subject_name']; ?></td>
-  <td><?php echo $res['exam_type']; ?></td>
-  <td><?php echo $res['semester']; ?></td>
- <td> <a href="view_result.php?student_id=<?php echo urlencode($res['student_id']); ?>&exam_type=<?php echo urlencode($res['exam_type']); ?>">
-  <button class="btn-assign-1">View </button></a>
-</tr>
-<?php
-  }
-}
-?>
-
+          <?php 
+          if(isset($_GET['student_id'])){
+            $student_id = $_GET['student_id'];
+            $query="SELECT * FROM store_marks WHERE student_id='$student_id'";
+            $result = pg_query($conn, $query); 
+            while($res=pg_fetch_array($result)){ ?>
+              <tr>
+                <td><?php echo $res['subject_code']; ?></td>
+                <td><?php echo $res['subject_name']; ?></td>
+                <td><?php echo $res['exam_type']; ?></td>
+                <td><?php echo $res['semester']; ?></td>
+                <td>
+                  <a href="view_result.php?student_id=<?php echo urlencode($res['student_id']); ?>&exam_type=<?php echo urlencode($res['exam_type']); ?>" 
+                     class="btn btn-success btn-sm">
+                    <i class="fas fa-eye"></i> View
+                  </a>
+                </td>
+              </tr>
+          <?php } } ?>
           </tbody>
         </table>
-      </section>
+      </div>
+    </div>
   </main>
+
+  <!-- Modal for Add Marks -->
+  <div class="modal fade" id="addMarksModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <form action="" method="post">
+          <div class="modal-header">
+            <h5 class="modal-title"><i class="fas fa-pen"></i> Add Marks</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body row g-3">
+            <input type="hidden" name="student_id" value="<?php echo $student_id; ?>">
+            <input type="hidden" name="semester" value="<?php echo $semester; ?>">
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Subject Code</label>
+              <select name="subject_code" class="form-select" required>
+                <option value="">-- Select --</option>
+                <?php 
+                $result = pg_query($conn, "SELECT * FROM subject");
+                while($row = pg_fetch_array($result)){ ?>
+                  <option value="<?php echo $row['subject_code']; ?>">
+                    <?php echo $row['subject_code']; ?>
+                  </option>
+                <?php } ?>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Subject Name</label>
+              <select name="subject_name" class="form-select" required>
+                <option value="">-- Select --</option>
+                <?php 
+                $result = pg_query($conn, "SELECT * FROM subject");
+                while($row = pg_fetch_array($result)){ ?>
+                  <option value="<?php echo $row['subject_name']; ?>">
+                    <?php echo $row['subject_name']; ?>
+                  </option>
+                <?php } ?>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Exam Type</label>
+              <select name="exam_type" class="form-select" required>
+                <option value="">-- Select --</option>
+                <option value="Final">Final</option>
+                <option value="Midterm">Midterm</option>
+                <option value="Practical">Practical</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Max Marks</label>
+              <input type="number" name="max_marks" class="form-control" required>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label fw-semibold">Marks Obtained</label>
+              <input type="number" name="marks_obtained" class="form-control" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" name="submit" class="btn btn-primary">
+              <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

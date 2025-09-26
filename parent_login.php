@@ -14,13 +14,19 @@ if(isset($_POST['submit'])){
 
        if($total > 0){
             $res = pg_fetch_assoc($result);
-            $_SESSION['student_id']  = $res['student_id'];
-            $_SESSION['parent_id']   = $res['parent_id']; // optional, if you want to store parent_id
-              $_SESSION['photo'] = $res['photo'];
+        $_SESSION['student_id']  = $res['student_id'];
+            $_SESSION['parent_id']   = $res['parent_id'];
+            $_SESSION['photo'] = $res['photo'];
             $_SESSION['designation'] = $res['designation'];
             $_SESSION['pan_no']  = $res['pan_no'];
             $_SESSION['joining_date'] = $res['joining_date'];
             $_SESSION['qualification'] = $res['qualification'];
+            $_SESSION['certificate'] = $res['certificate'];
+            $_SESSION['experience_certificate'] = $res['experience_certificate'];
+            $_SESSION['resume'] = $res['resume'];
+            $_SESSION['appointment_letter'] = $res['appointment_letter'];
+            $_SESSION['caste_certificate'] = $res['caste_certificate'];
+            $_SESSION['doc_10th_doc_12th'] = $res['doc_10th_doc_12th'];
             $_SESSION['bank_details'] = $res['bank_details'];
             $_SESSION['father_name'] = $res['father_name'];
             $_SESSION['mother_name'] = $res['mother_name'];
@@ -35,9 +41,9 @@ if(isset($_POST['submit'])){
             $_SESSION['permanent_address'] = $res['permanent_address'];
             $_SESSION['current_address'] = $res['current_address'];
             $_SESSION['employee_id'] = $res['employee_id'];
-            $_SESSION['full_name'] = $res['full_name'];
-            $_SESSION['role_type']   = $res['role_type'];
+             $_SESSION['full_name'] = $res['full_name'];
             $_SESSION['student_id']  = $res['student_id'];
+            $_SESSION['role_type']   = $res['role_type'];
             $_SESSION['department']  = $res['department'];
             $_SESSION['branch']      = $res['branch'];
             $_SESSION['batch']       = $res['batch'];
@@ -45,8 +51,7 @@ if(isset($_POST['submit'])){
             $_SESSION['semester']    = $res['semester'];
             $_SESSION['section']     = $res['section'];
             $_SESSION['program']     = $res['program'];
-            $_SESSION['status'] = $res['status'];
-            
+             $_SESSION['status'] = $res['status'];
 
             echo "<script>alert('Login Successful'); window.location='dashboard.php';</script>";
        } else {
